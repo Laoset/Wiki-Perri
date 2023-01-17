@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../util//perrito.gif");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  height: 100vh;
+  width: auto;
+}
+.title {
+  font-size: 5rem;
+  color: whitesmoke;
+}
+.bt {
+  transform: rotateX(32deg);
+  border-radius: 10px;
+  border-color: white;
+  font-size: large;
+  color: black;
+  font-weight: 900;
+  padding: 20px 50px;
+  perspective: 800px;
+  cursor: pointer;
+  background-color: white;
+  transform-style: preserve-3d;
+  transition: transform 0.2s;
+}
+.bt:hover {
+  transform: rotateX(38deg) translateY(7px);
+}

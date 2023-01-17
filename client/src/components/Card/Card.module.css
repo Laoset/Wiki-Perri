@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+}
+.tarjetas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  height: 45%;
+}
+.tarjetasDentro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 18rem;
+  height: 23rem;
+  background-color: #282929;
+}
+.name {
+  background-color: gray;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: white;
+  margin: 3px 0 5px;
+  width: 100%;
+}
+.img {
+  width: 100%;
+  height: 55%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.temperament {
+  font-size: small;
+  width: 90%;
+  align-self: center;
+  margin-top: 4px;
+  text-align: center;
+  color: white;
+  font-weight: 400;
+}
+.weight {
+  font-size: medium;
+  color: whitesmoke;
+}

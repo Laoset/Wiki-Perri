@@ -1,0 +1,19 @@
+.containerCard {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 5rem;
+  row-gap: 1rem;
+  border: 3px solid violet;
+}
+.containerSyC {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.padreContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

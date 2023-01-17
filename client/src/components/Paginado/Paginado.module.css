@@ -1,0 +1,11 @@
+.nav {
+  border: 2px solid red;
+  height: 3rem;
+}
+.ul {
+  display: flex;
+  align-items: center;
+}
+.li {
+  list-style: none;
+}

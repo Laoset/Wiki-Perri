@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  border: 2px solid green;
+  justify-content: center;
+  height: 2rem;
+  margin-top: 2px;
+}
+.sContainer {
+  border: 2px solid black;
+  background-color: #f9bd0e;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 60%;
+}
+.bt {
+  transform: rotateX(32deg);
+  border-radius: 10px;
+  border-color: white;
+  font-size: large;
+  color: black;
+  font-weight: 200;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.bt:hover {
+  transform: rotateX(38deg) translateY(7px);
+}
