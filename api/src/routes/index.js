@@ -5,6 +5,7 @@ const axios = require("axios");
 // const Dog = require("../models/Dog");
 // const Temperament = require("../models/Temperament");
 const { Dog, Temperament } = require("../db.js");
+const { where } = require("sequelize");
 const router = Router();
 const { DOGS_API_KEY } = process.env;
 // Configurar los routers
@@ -16,7 +17,7 @@ const getApiData = async () => {
   const url = await axios.get(
     `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
   );
-  const info = url.data.map((p) => {
+  let info = await url.data.map((p) => {
     return {
       id: p.id,
       name: p.name,
@@ -33,21 +34,38 @@ const getApiData = async () => {
 //Solamente el NAME de mi temperament a travez de la tabla intermedia, por ultimo se comprueba lo que me traigo por medio
 //de THROUGH, es algo imperativo, siempre va.
 const getDbData = async () => {
-  return await Dog.findAll({
-    includes: {
-      model: Temperament,
-      attributes: ["name"],
-      through: {
-        attributes: [],
+  let dbInfo = await Dog.findAll({
+    include: [
+      {
+        model: Temperament,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
       },
-    },
+    ],
   });
+  dbInfo = dbInfo.map((dog) => {
+    return {
+      id: dog.id,
+      name: dog.name,
+      weight: dog.weight,
+      life_span: dog.life_span,
+      image: dog.image,
+      createInDb: dog.createInDb,
+      height: dog.height,
+      temperament: dog.temperaments.map((temperament) => temperament.name),
+    };
+  });
+
+  console.log(dbInfo);
+  return dbInfo;
 };
 //Ahora toca unir mi pedido a la API como mis datos de la Bd
 const getTodo = async () => {
-  const info = await getApiData();
-  const db = await getDbData();
-  const resultadoFinal = info.concat(db);
+  const apiInfo = await getApiData();
+  const dbInfo = await getDbData();
+  const resultadoFinal = [...dbInfo, ...apiInfo];
   return resultadoFinal;
 };
 //Comienzo con mis request, funciona tanto como para traer todos como para QUERY params
@@ -57,7 +75,7 @@ router.get("/dogs", async (req, res) => {
   //PREGUNTO si existe name , osea si se hace de uso de query!
   if (name) {
     //Aca me guardo el que matchee del total de perros pero con lowercase para no problems
-    let query = await total.filter((p) =>
+    let query = total.filter((p) =>
       p.name.toLowerCase().includes(name.toLowerCase())
     );
     query.length
@@ -69,8 +87,8 @@ router.get("/dogs", async (req, res) => {
   }
 });
 router.get("/dogs/:idRaza", async (req, res) => {
-  const { idRaza } = req.params;
   try {
+    const { idRaza } = req.params;
     //Primero me traigo todos los perros
     const todos = await getTodo();
     //Segundo, filtro y matcheo con la raza correspondiente
@@ -82,25 +100,35 @@ router.get("/dogs/:idRaza", async (req, res) => {
     res.status(400).send("Error server");
   }
 });
-///////////////////////
+/////////////////////// cambies
 router.post("/dogs", async (req, res) => {
-  const { name, height, weight, life_span, image, createInDb, temperament } =
-    req.body;
-  const creadoDog = await Dog.create({
-    name,
-    height,
-    weight,
-    life_span,
-    image,
-    createInDb,
-  });
-  const temperamentoDog = await Temperament.findAll({
-    where: { name: temperament },
-  });
-  //Asociar ambos (add...) significa que trae de la tabla lo que se pasa por param. METODO DE SEQUELIZE
-  creadoDog.addTemperament(temperamentoDog);
-  res.status(201).send("Raza creada exitosamente");
+  try {
+    const { name, weight, life_span, image, height, temperaments } = req.body;
+    const newTemperament = await Temperament.findAll({
+      where: { name: temperaments },
+    });
+    if (!newTemperament) {
+      newTemperament = await Temperament.create({ name: temperaments });
+    }
+    const creadoDog = await Dog.create({
+      name,
+      weight,
+      life_span,
+      image,
+      height,
+    });
+    // //Mapear los temperamentos
+    // const temperamentoDog = await Temperament.findAll({
+    //   where: { name: temperament },
+    // });
+    await creadoDog.addTemperament(newTemperament);
+    res.status(201).send(creadoDog);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
+//Asociar ambos (add...) significa que trae de la tabla lo que se pasa por param. METODO DE SEQUELIZE
+
 //////////////////////
 router.get("/temperaments", async (req, res) => {
   //Me traigo info de la API
@@ -108,10 +136,10 @@ router.get("/temperaments", async (req, res) => {
     `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
   );
   //Me guardo la info en mi DB
-  const mapeadaApi = infoApi.data.map((t) => t.temperament);
-  const tempera = mapeadaApi.join(",").split(", ");
-  tempera.forEach((t) => {
-    Temperament.findOrCreate({
+  let mapeadaApi = infoApi.data.map((t) => t.temperament);
+  const tempera = mapeadaApi.join(",").split(",");
+  tempera.forEach(async (t) => {
+    await Temperament.findOrCreate({
       where: { name: t },
     });
   });
