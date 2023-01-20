@@ -1,19 +1,31 @@
-.container {
+.containerPadre {
+  background-color: #fed821;
   display: flex;
-  border: 2px solid green;
+  flex-direction: column;
   justify-content: center;
-  height: 2rem;
-  margin-top: 2px;
+  width: 100vh;
+  height: 50%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.containerSelect {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8rem;
+  margin-top: 1rem;
 }
 .sContainer {
-  border: 2px solid black;
-  background-color: #f9bd0e;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   gap: 3rem;
-  width: 60%;
+  margin-bottom: 1rem;
+}
+.selectores {
+  display: flex;
+  font-size: 18px;
+  padding: 10px;
+  margin: 5px 20px;
+  border-radius: 8px;
 }
 .bt {
   transform: rotateX(32deg);
@@ -25,6 +37,7 @@
   padding: 4px 10px;
   cursor: pointer;
   transition: transform 0.2s;
+  margin: 0 10px;
 }
 .bt:hover {
   transform: rotateX(38deg) translateY(7px);

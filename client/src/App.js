@@ -1,9 +1,10 @@
 import "./App.css";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/Home/Home";
 import PerroForm from "./components/PerroForm/PerroForm";
 import About from "./components/About/About";
+import Detail from "./components/Detail/Detail";
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/create" component={PerroForm} />
           <Route path="/about" component={About} />
+          <Route path="/detail/:id" component={Detail} />
         </Switch>
       </div>
     </BrowserRouter>

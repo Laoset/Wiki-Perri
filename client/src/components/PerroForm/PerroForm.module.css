@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: aquamarine;
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  background-color: beige;
+  border-radius: 20px;
+}
+.bt {
+  padding: 0.5em 1.5em;
+  border-radius: 7px;
+  border-bottom-left-radius: 0;
+  font-size: 15px;
+  font-weight: 900;
+  text-align: center;
+  margin: 2rem;
+  transition: all 0.9s;
+  background-color: #ffacac;
+  background-size: contain;
+  background-blend-mode: multiply;
+  cursor: pointer;
+}
+.bt:hover {
+  /* background-image: url("../../util/utiie.png"); */
+  background-color: #ffe5e5;
+  border-color: wheat;
+  border-radius: 0px;
+  /* animation: animatedBackground 6s linear infinite alternate; */
+}
+/* @keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+} */
+.title {
+  font-size: 4rem;
+  font-size: bold;
+  color: black;
+}
+
+.inputContainer {
+  width: 40rem;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.select {
+}
+.sideImg {
+  background-image: url("../../util/sideImg.jpg");
+  background-size: cover;
+  width: 18rem;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.labels {
+  font-size: 22px;
+  color: black;
+}
+.submit {
+  cursor: pointer;
+  padding: 0.3em 1em;
+  border-radius: 3px;
+  border-bottom-left-radius: 0;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+  margin: 2rem;
+  transition: all 0.9s;
+  background-color: cadetblue;
+  background-size: contain;
+  background-blend-mode: multiply;
+  cursor: pointer;
+}
+.submit:hover {
+  /* background-image: url("../../util/utiie.png"); */
+  background-color: #ffe5e5;
+  border-color: wheat;
+  border-radius: 0px;
+  /* animation: animatedBackground 6s linear infinite alternate; */
+}
