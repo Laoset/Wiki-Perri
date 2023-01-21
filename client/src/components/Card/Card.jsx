@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
 const Card = ({ id, name, image, temperament, weight }) => {
@@ -8,7 +9,9 @@ const Card = ({ id, name, image, temperament, weight }) => {
         <div className={styles.tarjetasDentro}>
           <img src={image} alt="ggwp" className={styles.img} />
           <div className={styles.infoContainer}>
-            <h3 className={styles.name}>{name}</h3>
+            <Link className={styles.link} to={"/detail/" + id}>
+              <h3 className={styles.name}>{name}</h3>
+            </Link>
 
             <h2 className={styles.temperament}>{temperament}</h2>
             <h2 className={styles.weight}>Weight: {weight} kg</h2>

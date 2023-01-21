@@ -9,15 +9,14 @@ import {
   orderByWeight,
   filterByTemperament,
   getTemperaments,
-  searchDog,
 } from "../../reduxActions/actions";
 
 export const SearchBar = ({ setCurrentPage, setOrden }) => {
   const dispatch = useDispatch();
   //Me traigo del estado mis temperamentos para poder mapear y hacer options
   const temps = useSelector((state) => state.temperaments);
-  //Estado que me guarda el NOMBRE del input search
-  const [name, setName] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     dispatch(getTemperaments());
@@ -58,14 +57,40 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
     //Modifica lo renderizado
     setOrden(`Ordenado ${evento.target.value}`);
   };
-  //Search de PERRO
-  const searchDoge = (evento) => {
-    evento.preventDefault();
-    setName(evento.target.value);
+  //FUNCION PARA EL SELECT PADRE
+  const handleClickOpen = () => {
+    setIsOpen(!isOpen);
   };
-  const submitDoge = (evento) => {
-    evento.preventDefault();
-    dispatch(searchDog(name));
+  //FUNCION QUE ABARCA MIS ORDENAMIENTOS
+  const handleOpChange = (evento) => {
+    const selectedOption = evento.target.value;
+    setSelectedOption(selectedOption);
+    setIsOpen(true);
+    if (selectedOption === "alfAsc") {
+      dispatch(orderByAlf("asc"));
+      //Seteo la pagina actual a 1
+      setCurrentPage(1);
+      //Modifica lo renderizado
+      setOrden(`Ordenado ${evento.target.value}`);
+    } else if (selectedOption === "alfDesc") {
+      dispatch(orderByAlf("desc"));
+      //Seteo la pagina actual a 1
+      setCurrentPage(1);
+      //Modifica lo renderizado
+      setOrden(`Ordenado ${evento.target.value}`);
+    } else if (selectedOption === "weightMayor") {
+      dispatch(orderByWeight("mayor"));
+      //Seteo la pagina actual a 1
+      setCurrentPage(1);
+      //Modifica lo renderizado
+      setOrden(`Ordenado ${evento.target.value}`);
+    } else if (selectedOption === "weightMenor") {
+      dispatch(orderByWeight("menor"));
+      //Seteo la pagina actual a 1
+      setCurrentPage(1);
+      //Modifica lo renderizado
+      setOrden(`Ordenado ${evento.target.value}`);
+    }
   };
   return (
     <div className={styles.containerPadre}>
@@ -87,44 +112,23 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
           className={styles.selectores}
           onChange={(e) => handleFilterCreated(e)}
         >
-          <option value="all">Todos</option>
+          <option value="all">Origin</option>
           <option value="api">Api</option>
           <option value="created">Creadas</option>
         </select>
-        <select
-          className={styles.selectores}
-          onChange={(e) => handleOrderAlf(e)}
-        >
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-        <select
-          className={styles.selectores}
-          onChange={(e) => handleOrderWeight(e)}
-        >
-          <option value="mayor">Mayor peso</option>
-          <option value="menor">Menor peso</option>
+        <select className={styles.selectores} onChange={handleOpChange}>
+          <option value="">Order By</option>
+          <option value="alfAsc">A-Z</option>
+          <option value="alfDesc">Z-A</option>
+          <option value="weightMayor">+Weight</option>
+          <option value="weightMenor">-Weight</option>
         </select>
       </div>
       <div className={styles.sContainer}>
         <div>
-          <input
-            onChange={(e) => searchDoge(e)}
-            type="text"
-            className={styles.input}
-          />
-          <button
-            type="submit"
-            onClick={(e) => submitDoge(e)}
-            className={styles.bt}
-          >
-            Search
+          <button className={styles.bt} onClick={handleClick}>
+            Reload
           </button>
-          <div>
-            <button className={styles.bt} onClick={handleClick}>
-              Reload
-            </button>
-          </div>
         </div>
       </div>
     </div>

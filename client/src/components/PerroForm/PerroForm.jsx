@@ -37,6 +37,14 @@ const PerroForm = () => {
     image: "",
     temperaments: [],
   });
+  //BORRAR TEMPERAMENTOS
+  const handleDeleteTemp = (el) => {
+    el.preventDefault();
+    setInfo({
+      ...info,
+      temperaments: info.temperaments.filter((e) => e !== el),
+    });
+  };
   //PARA MIS INPUTS
   const handleChange = (evento) => {
     evento.preventDefault();
@@ -52,8 +60,6 @@ const PerroForm = () => {
         [evento.target.name]: evento.target.value,
       })
     );
-
-    console.log(info);
   };
   //PARA MIS TEMPERAMENTOS
   const handleTemp = (evento) => {
@@ -61,14 +67,11 @@ const PerroForm = () => {
       ...info,
       temperaments: [...info.temperaments, evento.target.value],
     });
-    console.log(evento);
   };
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
   const handleSubmit = (evento) => {
     evento.preventDefault();
-    console.log(info);
     dispatch(postDog(info));
-    alert("CREADO EXITOSAMENTE");
     history.push("/home");
   };
   useEffect(() => {
@@ -77,7 +80,7 @@ const PerroForm = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Crea tu Perro</h1>
-      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
+      <form className={styles.form}>
         <div className={styles.inputContainer}>
           <label className={styles.labels}>Name :</label>
           <input
@@ -86,15 +89,15 @@ const PerroForm = () => {
             name="name"
             onChange={(e) => handleChange(e)}
           />
-          {error.name && <p>{error.name}</p>}
-          <label className={styles.labels}>height :</label>
+          {error.name && <p className={styles.errors}>{error.name}</p>}
+          <label className={styles.labels}>Height :</label>
           <input
             type="text"
             value={info.height}
             name="height"
             onChange={(e) => handleChange(e)}
           />
-          {error.height && <p>{error.height}</p>}
+          {error.height && <p className={styles.errors}>{error.height}</p>}
 
           <label className={styles.labels}>Weight :</label>
           <input
@@ -103,7 +106,7 @@ const PerroForm = () => {
             name="weight"
             onChange={(e) => handleChange(e)}
           />
-          {error.weight && <p>{error.weight}</p>}
+          {error.weight && <p className={styles.errors}>{error.weight}</p>}
 
           <label className={styles.labels}>Life span :</label>
           <input
@@ -112,7 +115,9 @@ const PerroForm = () => {
             name="life_span"
             onChange={(e) => handleChange(e)}
           />
-          {error.life_span && <p>{error.life_span}</p>}
+          {error.life_span && (
+            <p className={styles.errors}>{error.life_span}</p>
+          )}
 
           <label className={styles.labels}>Image :</label>
           <input
@@ -135,10 +140,25 @@ const PerroForm = () => {
               );
             })}
           </select>
-          <div>{info.temperaments.map((t) => t + ", ")}</div>
-          <button className={styles.submit} type="submit">
-            Create
-          </button>
+          <div className={styles.contenedorTemp}>
+            {info.temperaments?.map((t, index) => (
+              <div key={index} className={styles.te}>
+                <p className={styles.pTemp}>{t}</p>
+                <button
+                  onClick={() => handleDeleteTemp(t)}
+                  className={styles.btTemp}
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+          <input
+            onClick={(e) => handleSubmit(e)}
+            className={styles.submit}
+            type="submit"
+            value="Create"
+          />
         </div>
         <div className={styles.sideImg}></div>
       </form>

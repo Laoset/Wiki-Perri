@@ -5,12 +5,24 @@
   align-items: center;
   height: 100vh;
   background-color: aquamarine;
+  animation: move 1s ease-in-out;
+}
+@keyframes move {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 .form {
   display: flex;
   flex-direction: row;
   background-color: beige;
   border-radius: 20px;
+  height: 40rem;
+  width: 45rem;
+  max-height: 60rem;
 }
 .bt {
   padding: 0.5em 1.5em;
@@ -27,20 +39,11 @@
   cursor: pointer;
 }
 .bt:hover {
-  /* background-image: url("../../util/utiie.png"); */
   background-color: #ffe5e5;
   border-color: wheat;
   border-radius: 0px;
-  /* animation: animatedBackground 6s linear infinite alternate; */
 }
-/* @keyframes animatedBackground {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 100% 0;
-  }
-} */
+
 .title {
   font-size: 4rem;
   font-size: bold;
@@ -48,19 +51,25 @@
 }
 
 .inputContainer {
+  height: 40rem;
   width: 40rem;
-  height: 35rem;
+  max-width: 50rem;
+  max-height: 60rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .select {
+  margin-top: 20px;
+  width: 15rem;
+  padding: 3px;
+  margin-bottom: 10px;
 }
 .sideImg {
   background-image: url("../../util/sideImg.jpg");
   background-size: cover;
-  width: 18rem;
+  width: 20rem;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -68,7 +77,47 @@
   font-size: 22px;
   color: black;
 }
+.errors {
+  margin-top: 1px;
+  font-size: small;
+}
+.te {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 40rem;
+  max-height: 6rem;
+}
+.contenedorTemp {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 40rem;
+  max-height: 6rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.btTemp {
+  cursor: pointer;
+  padding: 0.3em 1em;
+  border-radius: 3px;
+  border-bottom-left-radius: 0;
+  font-size: 8px;
+  font-weight: 900;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: all 0.9s;
+  background-color: cadetblue;
+  background-size: contain;
+  background-blend-mode: multiply;
+  cursor: pointer;
+}
 .submit {
+  display: block;
   cursor: pointer;
   padding: 0.3em 1em;
   border-radius: 3px;

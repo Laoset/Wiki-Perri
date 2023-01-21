@@ -34,6 +34,8 @@ const Home = () => {
   const paginado = (pagNumber) => {
     setCurrentPage(pagNumber);
   };
+  console.log(currentPage);
+  console.log(currentDogs.length);
 
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
@@ -42,10 +44,13 @@ const Home = () => {
 
   return (
     <div className={styles.padreContainer}>
-      <div>
-        <NavBar />
+      <div className={styles.segundoContainer}>
+        {currentDogs.length >= 1 ? (
+          <div className={styles.navContainer}>
+            <NavBar />
+          </div>
+        ) : null}
         <div className={styles.containerSyC}>
-          {/* Paginado necesita de esas props para funcionar */}
           <Paginado
             dogsPerPage={dogsPerPage}
             getDogs={getDogs.length}
@@ -59,16 +64,14 @@ const Home = () => {
           <div className={styles.containerCard}>
             {currentDogs?.map((p) => {
               return (
-                <Link to={"/detail/" + p.id}>
-                  <Card
-                    id={p.id}
-                    key={p.id}
-                    name={p.name}
-                    image={p.image}
-                    temperament={p.temperament}
-                    weight={p.weight}
-                  />
-                </Link>
+                <Card
+                  id={p.id}
+                  key={p.id}
+                  name={p.name}
+                  image={p.image}
+                  temperament={p.temperament}
+                  weight={p.weight}
+                />
               );
             })}
           </div>

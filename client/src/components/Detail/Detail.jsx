@@ -29,13 +29,25 @@ const Detail = () => {
           </div>
           <div className={styles.containerText}>
             <h1 className={styles.title}>{doges[0].name}</h1>
-            <h2 className={styles.h2}>{doges[0].height}</h2>
-            <h2 className={styles.h2}>{doges[0].weight}</h2>
-            <h3 className={styles.tempera}>
-              Temperamentos :
-              {!doges[0].createInDb
-                ? doges[0].temperament
-                : doges[0].temperament.map((el) => el.name + " ")}
+            <h3 className={styles.h3tempera}>
+              Height<p className={styles.p}>{doges[0].height}</p>
+            </h3>
+            <h3 className={styles.h3tempera}>
+              Weight
+              <p className={styles.p}>{doges[0].weight} kg</p>
+            </h3>
+            <h3 className={styles.h3tempera}>
+              Life span
+              <p className={styles.p}>{doges[0].life_span}</p>
+            </h3>
+
+            <h3 className={styles.h3tempera}>
+              Temperamentos
+              <p className={styles.temperamentos}>
+                {!doges[0].createInDb
+                  ? doges[0].temperament
+                  : doges[0].temperament.map((el) => el.name + " ")}
+              </p>
             </h3>
           </div>
         </div>
@@ -43,7 +55,7 @@ const Detail = () => {
         <p>LOADING</p>
       )}
       <Link to="/home">
-        <button>VOLVER</button>
+        <button className={styles.bt}>VOLVER</button>
       </Link>
     </div>
   );
