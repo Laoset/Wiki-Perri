@@ -28,8 +28,13 @@ const getApiData = async () => {
       temperament: p.temperament,
     };
   });
+  // const revision = info.map((dog) => {
+  //   if (dog.name == "Olde English Bulldogge") dog.weight = [22, 30];
+  //   return dog
+  // });
   return info;
 };
+
 //Me traigo TODO mi modelo de DOG e incluyo el modelo de temperamento
 //Solamente el NAME de mi temperament a travez de la tabla intermedia, por ultimo se comprueba lo que me traigo por medio
 //de THROUGH, es algo imperativo, siempre va.
@@ -64,12 +69,13 @@ const getDbData = async () => {
 //Ahora toca unir mi pedido a la API como mis datos de la Bd
 const getTodo = async () => {
   const apiInfo = await getApiData();
-  const verificar = apiInfo.map((dog) => {
+  const revision = getApiData.map((dog) => {
     if (dog.name == "Olde English Bulldogge") dog.weight = [22, 30];
+    return dog;
   });
   const dbInfo = await getDbData();
-  const resultadoFinal = [...dbInfo, ...verificar];
-  return resultadoFinal;
+  return [...dbInfo, ...revision];
+  // return resultadoFinal;
 };
 //Comienzo con mis request, funciona tanto como para traer todos como para QUERY params
 router.get("/dogs", async (req, res) => {
