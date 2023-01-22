@@ -75,7 +75,7 @@ const PerroForm = () => {
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
   const handleSubmit = (evento) => {
     evento.preventDefault();
-    const suma = info.weightmin.concat(info.weightmax);
+    const suma = info.weightmin.concat(` - ${info.weightmax}`);
     info.weight.push(suma);
     dispatch(postDog(info));
     history.push("/home");
