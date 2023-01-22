@@ -64,8 +64,11 @@ const getDbData = async () => {
 //Ahora toca unir mi pedido a la API como mis datos de la Bd
 const getTodo = async () => {
   const apiInfo = await getApiData();
+  const verificar = apiInfo.map((dog) => {
+    if (dog.name == "Olde English Bulldogge") dog.weight = [22, 30];
+  });
   const dbInfo = await getDbData();
-  const resultadoFinal = [...dbInfo, ...apiInfo];
+  const resultadoFinal = [...dbInfo, ...verificar];
   return resultadoFinal;
 };
 //Comienzo con mis request, funciona tanto como para traer todos como para QUERY params
