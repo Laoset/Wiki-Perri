@@ -69,7 +69,7 @@ const getDbData = async () => {
 //Ahora toca unir mi pedido a la API como mis datos de la Bd
 const getTodo = async () => {
   const apiInfo = await getApiData();
-  const revision = getApiData.map((dog) => {
+  const revision = apiInfo.map((dog) => {
     if (dog.name == "Olde English Bulldogge") dog.weight = [22, 30];
     return dog;
   });
