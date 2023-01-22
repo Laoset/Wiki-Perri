@@ -32,10 +32,12 @@ const PerroForm = () => {
   const [info, setInfo] = useState({
     name: "",
     height: "",
-    weight: "",
+    weightmin: "",
+    weightmax: "",
     life_span: "",
     image: "",
     temperaments: [],
+    weight: [],
   });
   //BORRAR TEMPERAMENTOS
   const handleDeleteTemp = (el) => {
@@ -53,6 +55,8 @@ const PerroForm = () => {
       //lo de abajo hace referencia a todos los atributos NAMES que tienen mis elementos renderizados, osea los que se van modifcando
       [evento.target.name]: evento.target.value,
     });
+    console.log(info);
+
     //La parte validadora
     setError(
       validador({
@@ -71,8 +75,11 @@ const PerroForm = () => {
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
   const handleSubmit = (evento) => {
     evento.preventDefault();
+    const suma = info.weightmin.concat(info.weightmax);
+    info.weight.push(suma);
     dispatch(postDog(info));
     history.push("/home");
+    console.log(info);
   };
   useEffect(() => {
     dispatch(getTemperaments());
@@ -102,12 +109,17 @@ const PerroForm = () => {
           <label className={styles.labels}>Weight :</label>
           <input
             type="text"
-            value={info.weight}
-            name="weight"
+            value={info.weightmin}
+            name="weightmin"
+            onChange={(e) => handleChange(e)}
+          />
+          <input
+            type="text"
+            value={info.weightmax}
+            name="weightmax"
             onChange={(e) => handleChange(e)}
           />
           {error.weight && <p className={styles.errors}>{error.weight}</p>}
-
           <label className={styles.labels}>Life span :</label>
           <input
             type="text"
