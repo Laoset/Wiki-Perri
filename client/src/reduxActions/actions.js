@@ -76,7 +76,7 @@ export const orderByWeight = (payload) => {
 //POST DE PERRITO
 export const postDog = (payload) => {
   return async function (dispatch) {
-    let postPerri = await Axios.post(
+    const postPerri = await Axios.post(
       "https://deployperritos-production.up.railway.app/dogs",
       payload
     );
@@ -84,5 +84,11 @@ export const postDog = (payload) => {
       type: "POST_DOG",
       payload: postPerri,
     });
+  };
+};
+//TODO LOS PERRITOS
+export const filterByAllDogs = () => {
+  return {
+    type: "FILTER_BY_ALL_DOGS",
   };
 };

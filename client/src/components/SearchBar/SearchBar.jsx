@@ -9,6 +9,7 @@ import {
   orderByWeight,
   filterByTemperament,
   getTemperaments,
+  filterByAllDogs,
 } from "../../reduxActions/actions";
 
 export const SearchBar = ({ setCurrentPage, setOrden }) => {
@@ -28,7 +29,18 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
   };
   //Filter de creacion
   const handleFilterCreated = (evento) => {
-    dispatch(filterByCreated(evento.target.value));
+    let payload = evento.target.value;
+    if (payload === "allDogs") {
+      dispatch(filterByAllDogs());
+    } else {
+      if (payload === "api") {
+        payload = "api";
+      }
+      if (payload === "created") {
+        payload = "created";
+      }
+      dispatch(filterByCreated(payload));
+    }
   };
   //Filter de Temperamento
   const handleFilterTemperament = (evento) => {
@@ -112,7 +124,7 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
           className={styles.selectores}
           onChange={(e) => handleFilterCreated(e)}
         >
-          <option value="all">Origin</option>
+          <option value="allDogs">Origin</option>
           <option value="api">Api</option>
           <option value="created">Creadas</option>
         </select>
