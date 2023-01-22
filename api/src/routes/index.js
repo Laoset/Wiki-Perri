@@ -70,7 +70,8 @@ const getDbData = async () => {
 const getTodo = async () => {
   const apiInfo = await getApiData();
   const revision = apiInfo.map((dog) => {
-    if (dog.name == "Olde English Bulldogge") dog.weight = [22, 30];
+    if (dog.name == "Olde English Bulldogge") dog.weight = ["22 - 30"];
+    if (dog.name == "Smooth Fox Terrier") dog.weight = ["6 - 8"];
     return dog;
   });
   const dbInfo = await getDbData();
