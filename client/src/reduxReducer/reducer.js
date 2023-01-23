@@ -1,11 +1,13 @@
 const initialState = {
+  //Estado basico y de refresh
   dogs: [],
+  //Estado para filtrar
   allDogs: [],
-  //Otro estado para orden
+  //Estado para orden
   allDesorderDogs: [],
   //Estado para mis temperamentos
   temperaments: [],
-  //Detail estado
+  //Estado de detalle de perro
   detail: [],
 };
 function rootReducer(state = initialState, { type, payload }) {

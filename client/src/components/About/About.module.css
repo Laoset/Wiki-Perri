@@ -5,9 +5,18 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
+  animation: move 1s ease-in-out;
+}
+@keyframes move {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 .containerAbout {
-  background-color: #c5c6c8;
+  background-color: #fdf2e9;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -33,7 +42,7 @@
 .h1Mi {
   font-size: 4rem;
   font-weight: bold;
-  color: black;
+  color: #273746;
 }
 .spanMi {
   color: #ff6961;
@@ -45,27 +54,33 @@
   font-size: medium;
 }
 .h3Mi {
+  color: #273746;
+  margin: 0 15px;
   font-weight: 600;
-  font-size: small;
+  font-size: medium;
 }
 .req {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 .h2Li {
+  color: #273746;
   font-size: 20px;
   font-weight: 600;
 }
 .li {
+  color: #ff6961;
+  font-style: italic;
   font-size: medium;
   list-style: none;
+  font-weight: 600;
 }
 .bt {
   transform: rotateX(32deg);
   border-radius: 10px;
   border-color: white;
   font-size: 18px;
-  color: black;
+  color: #273746;
   font-weight: 600;
   padding: 10px 17px;
   cursor: pointer;

@@ -4,6 +4,8 @@
   height: 4.5rem;
   background-color: #ebedef;
   animation: move 1s ease-in-out;
+  text-align: center;
+  align-items: center;
 }
 @keyframes move {
   from {
@@ -15,10 +17,13 @@
 }
 
 .titleContainer {
+  width: auto;
+  height: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  gap: 5rem;
+  text-align: center;
 }
 .btContainer {
   display: flex;
@@ -27,10 +32,10 @@
   align-items: center;
 }
 .title {
-  font-size: 4rem;
   font-weight: bold;
   color: #273746;
   font-family: "Courier New", Courier, monospace;
+  font-size: 4rem;
 }
 .bt {
   transform: rotateX(32deg);
@@ -47,4 +52,12 @@
 }
 .bt:hover {
   transform: rotateX(38deg) translateY(7px);
+}
+
+.img {
+  margin-bottom: 1px;
+  padding: 0;
+  width: 4rem;
+  filter: brightness(1.1);
+  mix-blend-mode: multiply;
 }

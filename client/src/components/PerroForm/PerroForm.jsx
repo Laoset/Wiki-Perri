@@ -2,27 +2,29 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
-import { getTemperaments, postDog } from "../../reduxActions/actions";
+import { getRazas, getTemperaments, postDog } from "../../reduxActions/actions";
 //STYLE
 import styles from "./PerroForm.module.css";
-const validador = (info) => {
-  //variable donde guardo mis errores
-  let errors = {};
-  if (!info.name) {
-    errors.name = "Se requiere un nombre";
-  }
-  if (!info.height) {
-    errors.height = "Se requiere altura";
-  }
-  if (!info.weight) {
-    errors.weight = "Se requiere peso";
-  }
-  if (!info.life_span) {
-    errors.life_span = "Se requiere expectativa de vida";
-  }
-  return errors;
-};
+
 const PerroForm = () => {
+  //Validador
+  const validador = (info) => {
+    //variable donde guardo mis errores
+    let errors = {};
+    if (!info.name) {
+      errors.name = "Se requiere un nombre";
+    }
+    if (!info.heightmin || !info.heightmax) {
+      errors.height = "Se requiere altura";
+    }
+    if (!info.weightmin || !info.weightmax) {
+      errors.weight = "Se requiere peso";
+    }
+    if (!info.life_span) {
+      errors.life_span = "Se requiere expectativa de vida";
+    }
+    return errors;
+  };
   const dispatch = useDispatch();
   const history = useHistory();
   const tempera = useSelector((state) => state.temperaments);
@@ -31,13 +33,15 @@ const PerroForm = () => {
   //Estado donde guarde mi FORMULARIO con los datos del dog
   const [info, setInfo] = useState({
     name: "",
-    height: "",
+    heightmin: "",
+    heightmax: "",
     weightmin: "",
     weightmax: "",
     life_span: "",
     image: "",
     temperaments: [],
     weight: [],
+    height: [],
   });
   //BORRAR TEMPERAMENTOS
   const handleDeleteTemp = (el) => {
@@ -73,13 +77,26 @@ const PerroForm = () => {
     });
   };
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
+  console.log(error);
   const handleSubmit = (evento) => {
     evento.preventDefault();
+    //Uno ambos weight para mandarlos como unica cadena a la propiedad weight
     const suma = info.weightmin.concat(` - ${info.weightmax}`);
     info.weight.push(suma);
-    dispatch(postDog(info));
-    history.push("/home");
-    console.log(info);
+    //Lo mismo pero en HEIGHT
+    const sumaHeight = info.heightmin.concat(` - ${info.heightmax}`);
+    info.height.push(sumaHeight);
+    //Condicional de submit
+    if (error.length === undefined || info.name === String) {
+      dispatch(postDog(info));
+      alert("Creado exitosamente");
+      history.push("/home");
+      dispatch(getRazas());
+
+      console.log(info);
+    } else {
+      alert("Te falta completar informacion");
+    }
   };
   useEffect(() => {
     dispatch(getTemperaments());
@@ -89,9 +106,10 @@ const PerroForm = () => {
       <h1 className={styles.title}>Crea tu Perro</h1>
       <form className={styles.form}>
         <div className={styles.inputContainer}>
+          {/* NAME SECTION */}
           <label className={styles.labels}>Name</label>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className={styles.inputs}
             type="text"
             value={info.name}
@@ -99,20 +117,31 @@ const PerroForm = () => {
             onChange={(e) => handleChange(e)}
           />
           {error.name && <p className={styles.errors}>{error.name}</p>}
+          {/* HEIGHT SECTION */}
           <label className={styles.labels}>Height</label>
           <input
-            autocomplete="off"
+            autoComplete="off"
+            className={styles.weightmin}
+            type="text"
+            value={info.heightmin}
+            name="heightmin"
+            onChange={(e) => handleChange(e)}
+            placeholder="Min"
+          />
+          <input
+            autoComplete="off"
             className={styles.inputs}
             type="text"
-            value={info.height}
-            name="height"
+            value={info.heightmax}
+            name="heightmax"
             onChange={(e) => handleChange(e)}
+            placeholder="Max"
           />
           {error.height && <p className={styles.errors}>{error.height}</p>}
-
+          {/* WEIGHT SECTION */}
           <label className={styles.labels}>Weight</label>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className={styles.weightmin}
             type="text"
             value={info.weightmin}
@@ -121,7 +150,7 @@ const PerroForm = () => {
             placeholder="Min"
           />
           <input
-            autocomplete="off"
+            autoComplete="off"
             className={styles.inputs}
             type="text"
             value={info.weightmax}
@@ -130,9 +159,10 @@ const PerroForm = () => {
             placeholder="Max"
           />
           {error.weight && <p className={styles.errors}>{error.weight}</p>}
+          {/* LIFE SPAN SECTION */}
           <label className={styles.labels}>Life span</label>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className={styles.inputs}
             type="text"
             value={info.life_span}
@@ -142,16 +172,17 @@ const PerroForm = () => {
           {error.life_span && (
             <p className={styles.errors}>{error.life_span}</p>
           )}
-
+          {/* IMAGE SECTION */}
           <label className={styles.labels}>Image</label>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className={styles.inputs}
             name="image"
             value={info.image}
             type="text"
             onChange={(e) => handleChange(e)}
           />
+          {/* TEMPERAMENT SECTION */}
           <select
             required
             onChange={(e) => handleTemp(e)}

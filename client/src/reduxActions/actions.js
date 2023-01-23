@@ -1,5 +1,5 @@
 import Axios from "axios";
-//Traer razas
+//Traer razas y temperamentos de la API
 export const getRazas = () => {
   return async function (dispatch) {
     let infoAfuera = await Axios.get(
@@ -23,7 +23,7 @@ export const getTemperaments = () => {
     });
   };
 };
-//Search name dogs
+//Buscar RAZA por nombre de perro (SearchBar)
 export const searchDog = (payload) => {
   return async function (dispatch) {
     let dataPerri = await Axios.get(
@@ -35,7 +35,7 @@ export const searchDog = (payload) => {
     });
   };
 };
-//Search ID dogs
+//Search ID dogs para DETAIL COMPONENT
 export const searchIdDog = (id) => {
   return async function (dispatch) {
     let dataPerriId = await Axios.get(

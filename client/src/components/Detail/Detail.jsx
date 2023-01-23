@@ -30,7 +30,7 @@ const Detail = () => {
           <div className={styles.containerText}>
             <h1 className={styles.title}>{doges[0].name}</h1>
             <h3 className={styles.h3tempera}>
-              Height<p className={styles.p}>{doges[0].height}</p>
+              Height<p className={styles.p}>{doges[0].height} cm</p>
             </h3>
             <h3 className={styles.h3tempera}>
               Weight

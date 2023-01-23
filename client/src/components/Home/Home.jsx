@@ -7,10 +7,10 @@ import { getRazas } from "../../reduxActions/actions";
 //Importo mis componentes
 import Card from "../Card/Card";
 import NavBar from "../NavBar/NavBar";
-import Paginado from "../Paginado/Paginado";
+import PaginadoSearchBar from "../Paginado y Searchbar/PaginadoSearchBar";
 //ESTILO
 import styles from "./Home.module.css";
-import { SearchBar } from "../SearchBar/SearchBar";
+import { Filtros } from "../Filtros/Filtros";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -51,7 +51,7 @@ const Home = () => {
           </div>
         ) : null}
         <div className={styles.containerSyC}>
-          <Paginado
+          <PaginadoSearchBar
             dogsPerPage={dogsPerPage}
             getDogs={getDogs.length}
             paginado={paginado}
@@ -59,7 +59,7 @@ const Home = () => {
         </div>
         <div className={styles.containerCartita}>
           <div className={styles.containerSearch}>
-            <SearchBar setCurrentPage={setCurrentPage} setOrden={setOrden} />
+            <Filtros setCurrentPage={setCurrentPage} setOrden={setOrden} />
           </div>
           <div className={styles.containerCard}>
             {currentDogs?.map((p) => {

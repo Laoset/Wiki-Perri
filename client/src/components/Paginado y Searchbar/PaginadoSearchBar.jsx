@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Paginado.module.css";
 import { useDispatch } from "react-redux";
 import { searchDog } from "../../reduxActions/actions";
-const Paginado = ({ dogsPerPage, getDogs, paginado }) => {
+const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado }) => {
   //Search section
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -59,4 +59,4 @@ const Paginado = ({ dogsPerPage, getDogs, paginado }) => {
   );
 };
 
-export default Paginado;
+export default PaginadoSearchBar;

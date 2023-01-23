@@ -28,6 +28,7 @@
   margin: 5px 20px;
   border-radius: 8px;
   color: #273746;
+  font-family: "Courier New", Courier, monospace;
 }
 .bt {
   transform: rotateX(32deg);

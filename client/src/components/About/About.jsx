@@ -12,9 +12,9 @@ const About = () => {
         </div>
         <h3 className={styles.h3Mi}>
           Actualmente cursando el Bootcamp FullStack de Henry. Esta web, es
-          parte del Bootcamp y es llamado{" "}
-          <span className={styles.spansito}>Proyecto Individual</span>, tiene el
-          objetivo de crearlo desde 0, trabajando base de datos, Back end y
+          parte del mismo y es llamado{" "}
+          <span className={styles.spansito}>Proyecto Individual</span>, la idea
+          es crear la pagina desde 0, trabajando con Base de datos, Back end y
           Front End. Debe cumplir los siguientes requisitos, en base a la
           tematica propuesta:
           <div className={styles.req}>

@@ -12,7 +12,7 @@ import {
   filterByAllDogs,
 } from "../../reduxActions/actions";
 
-export const SearchBar = ({ setCurrentPage, setOrden }) => {
+export const Filtros = ({ setCurrentPage, setOrden }) => {
   const dispatch = useDispatch();
   //Me traigo del estado mis temperamentos para poder mapear y hacer options
   const temps = useSelector((state) => state.temperaments);
@@ -34,12 +34,6 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
     if (payload === "allDogs") {
       dispatch(filterByAllDogs());
     } else {
-      if (payload === "api") {
-        payload = "api";
-      }
-      if (payload === "created") {
-        payload = "created";
-      }
       dispatch(filterByCreated(payload));
     }
   };
