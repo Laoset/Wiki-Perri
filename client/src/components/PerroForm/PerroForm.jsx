@@ -89,16 +89,20 @@ const PerroForm = () => {
       <h1 className={styles.title}>Crea tu Perro</h1>
       <form className={styles.form}>
         <div className={styles.inputContainer}>
-          <label className={styles.labels}>Name :</label>
+          <label className={styles.labels}>Name</label>
           <input
+            autocomplete="off"
+            className={styles.inputs}
             type="text"
             value={info.name}
             name="name"
             onChange={(e) => handleChange(e)}
           />
           {error.name && <p className={styles.errors}>{error.name}</p>}
-          <label className={styles.labels}>Height :</label>
+          <label className={styles.labels}>Height</label>
           <input
+            autocomplete="off"
+            className={styles.inputs}
             type="text"
             value={info.height}
             name="height"
@@ -106,22 +110,30 @@ const PerroForm = () => {
           />
           {error.height && <p className={styles.errors}>{error.height}</p>}
 
-          <label className={styles.labels}>Weight :</label>
+          <label className={styles.labels}>Weight</label>
           <input
+            autocomplete="off"
+            className={styles.weightmin}
             type="text"
             value={info.weightmin}
             name="weightmin"
             onChange={(e) => handleChange(e)}
+            placeholder="Min"
           />
           <input
+            autocomplete="off"
+            className={styles.inputs}
             type="text"
             value={info.weightmax}
             name="weightmax"
             onChange={(e) => handleChange(e)}
+            placeholder="Max"
           />
           {error.weight && <p className={styles.errors}>{error.weight}</p>}
-          <label className={styles.labels}>Life span :</label>
+          <label className={styles.labels}>Life span</label>
           <input
+            autocomplete="off"
+            className={styles.inputs}
             type="text"
             value={info.life_span}
             name="life_span"
@@ -131,8 +143,10 @@ const PerroForm = () => {
             <p className={styles.errors}>{error.life_span}</p>
           )}
 
-          <label className={styles.labels}>Image :</label>
+          <label className={styles.labels}>Image</label>
           <input
+            autocomplete="off"
+            className={styles.inputs}
             name="image"
             value={info.image}
             type="text"

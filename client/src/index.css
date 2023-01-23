@@ -7,7 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(".//util/fondoDesenfocado.jpg");
-  /* background-color: #fdf2e9; */
+  font-family: "Courier New", Courier, monospace;
 }
 
 code {

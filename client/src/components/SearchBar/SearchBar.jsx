@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 //Importo mi action
@@ -16,8 +16,9 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
   const dispatch = useDispatch();
   //Me traigo del estado mis temperamentos para poder mapear y hacer options
   const temps = useSelector((state) => state.temperaments);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  //ESTADOS para realizar la logica de ordenamientos
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [selectedOption, setSelectedOption] = useState("");
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     dispatch(getTemperaments());
@@ -51,33 +52,12 @@ export const SearchBar = ({ setCurrentPage, setOrden }) => {
     //Modifica lo renderizado
     setOrden(`Ordenado ${evento.target.value}`);
   };
-  //Order por ALF
-  const handleOrderAlf = (evento) => {
-    evento.preventDefault();
-    dispatch(orderByAlf(evento.target.value));
-    //Seteo la pagina actual a 1
-    setCurrentPage(1);
-    //Modifica lo renderizado
-    setOrden(`Ordenado ${evento.target.value}`);
-  };
-  //Order por PESO
-  const handleOrderWeight = (evento) => {
-    evento.preventDefault();
-    dispatch(orderByWeight(evento.target.value));
-    //Seteo la pagina actual a 1
-    setCurrentPage(1);
-    //Modifica lo renderizado
-    setOrden(`Ordenado ${evento.target.value}`);
-  };
-  //FUNCION PARA EL SELECT PADRE
-  const handleClickOpen = () => {
-    setIsOpen(!isOpen);
-  };
+
   //FUNCION QUE ABARCA MIS ORDENAMIENTOS
   const handleOpChange = (evento) => {
     const selectedOption = evento.target.value;
-    setSelectedOption(selectedOption);
-    setIsOpen(true);
+    // setSelectedOption(selectedOption);
+    // setIsOpen(true);
     if (selectedOption === "alfAsc") {
       dispatch(orderByAlf("asc"));
       //Seteo la pagina actual a 1

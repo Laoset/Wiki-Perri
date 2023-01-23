@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Paginado.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchDog } from "../../reduxActions/actions";
 const Paginado = ({ dogsPerPage, getDogs, paginado }) => {
   //Search section

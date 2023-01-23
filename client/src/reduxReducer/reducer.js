@@ -8,7 +8,6 @@ const initialState = {
   //Detail estado
   detail: [],
 };
-let allDogs = [];
 function rootReducer(state = initialState, { type, payload }) {
   switch (type) {
     case "GET_DOGS":
@@ -26,7 +25,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case "SEARCH_DOG":
       return {
         ...state,
-        allDesorderDogs: payload,
+        dogs: payload,
       };
     case "SEARCH_ID":
       return {
