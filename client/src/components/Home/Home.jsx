@@ -14,6 +14,8 @@ import { Filtros } from "../Filtros/Filtros";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  //Loader
+  const [loading, setLoading] = useState(false);
   //Para despachar mis actions
   const dispatch = useDispatch();
   //Mi reemplazo de mapstateToProps
@@ -39,45 +41,57 @@ const Home = () => {
 
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3500);
     dispatch(getRazas());
   }, [dispatch]);
 
   return (
-    <div className={styles.padreContainer}>
-      <div className={styles.segundoContainer}>
-        {currentDogs.length >= 1 ? (
-          <div className={styles.navContainer}>
-            <NavBar />
-          </div>
-        ) : null}
-        <div className={styles.containerSyC}>
-          <PaginadoSearchBar
-            dogsPerPage={dogsPerPage}
-            getDogs={getDogs.length}
-            paginado={paginado}
-          />
+    <>
+      {loading ? (
+        <div className={styles.padreLoader}>
+          <div className={styles.loader}></div>
         </div>
-        <div className={styles.containerCartita}>
-          <div className={styles.containerSearch}>
-            <Filtros setCurrentPage={setCurrentPage} setOrden={setOrden} />
-          </div>
-          <div className={styles.containerCard}>
-            {currentDogs?.map((p) => {
-              return (
-                <Card
-                  id={p.id}
-                  key={p.id}
-                  name={p.name}
-                  image={p.image}
-                  temperament={p.temperament}
-                  weight={p.weight}
-                />
-              );
-            })}
+      ) : (
+        <div className={styles.padreContainer}>
+          <div className={styles.segundoContainer}>
+            {currentDogs.length >= 1 ? (
+              <div className={styles.navContainer}>
+                <NavBar />
+              </div>
+            ) : null}
+            <div className={styles.containerSyC}>
+              <PaginadoSearchBar
+                dogsPerPage={dogsPerPage}
+                getDogs={getDogs.length}
+                paginado={paginado}
+              />
+            </div>
+            <div className={styles.containerCartita}>
+              <div className={styles.containerSearch}>
+                <Filtros setCurrentPage={setCurrentPage} setOrden={setOrden} />
+              </div>
+              <div className={styles.containerCard}>
+                {currentDogs?.map((p) => {
+                  return (
+                    <Card
+                      id={p.id}
+                      key={p.id}
+                      name={p.name}
+                      image={p.image}
+                      temperament={p.temperament}
+                      weight={p.weight}
+                    />
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

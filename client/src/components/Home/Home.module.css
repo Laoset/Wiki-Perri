@@ -1,3 +1,45 @@
+/* LOADER */
+@keyframes move {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.padreLoader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: move 1s ease-in-out;
+}
+.loader {
+  background-image: url("../../util//loader.gif");
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20rem;
+  width: 30rem;
+  animation: jump 3s infinite;
+}
+@keyframes jump {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+/* NORMAL RENDERING */
 .padreContainer {
   display: flex;
   justify-content: center;
