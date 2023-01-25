@@ -55,13 +55,13 @@ const getDbData = async () => {
       image: dog.image,
       createInDb: dog.createInDb,
       height: dog.height,
-      temperament: dog.temperament,
+      temperament: dog.temperament.map((t) => t.name),
     };
   });
-  info.forEach(async (dog) => {
-    let temperament = await Temperament.findByPk(dog.temperament);
-    dog.temperament = temperament.name;
-  });
+  // info.forEach(async (dog) => {
+  //   let temperament = await Temperament.findByPk(dog.temperament);
+  //   dog.temperament = temperament.name;
+  // });
   return info;
 };
 //Ahora toca unir mi FUNCION que trae data de API y la FUNCION que trae de la Bd
