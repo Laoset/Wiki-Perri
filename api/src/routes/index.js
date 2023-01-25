@@ -1,17 +1,18 @@
 const { Router } = require("express");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
+/////Axios para metodos HTTP
 const axios = require("axios");
-// const Dog = require("../models/Dog");
-// const Temperament = require("../models/Temperament");
+/////Me traigo los modelos
 const { Dog, Temperament } = require("../db.js");
 const { where } = require("sequelize");
 const router = Router();
+//Mi KEY provista por la API al registarme
 const { DOGS_API_KEY } = process.env;
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-//Creando funciones controladoras que luego las invocare dentro del pedido o posteo
+//Funcion que al EJECUTARSE me trae los PERROS con su correspondientes PROPIEDADES
 const getApiData = async () => {
   //Me guardo lo que trae la API
   const url = await axios.get(
@@ -28,16 +29,10 @@ const getApiData = async () => {
       temperament: p.temperament,
     };
   });
-  // const revision = info.map((dog) => {
-  //   if (dog.name == "Olde English Bulldogge") dog.weight = [22, 30];
-  //   return dog
-  // });
   return info;
 };
 
-//Me traigo TODO mi modelo de DOG e incluyo el modelo de temperamento
-//Solamente el NAME de mi temperament a travez de la tabla intermedia, por ultimo se comprueba lo que me traigo por medio
-//de THROUGH, es algo imperativo, siempre va.
+///////Funcion que me trae TODO mi modelo de DOG e incluyo el modelo de temperamento, solo el ATTRIBUTE NAME de THROUGH, es algo imperativo, siempre va.
 const getDbData = async () => {
   let dbInfo = await Dog.findAll({
     include: [
@@ -50,6 +45,7 @@ const getDbData = async () => {
       },
     ],
   });
+  //La modifico una vez unida con el Temperamento para luego mapearla en busca de cada DOG,mapeo el TEMPERAMENTO ya que me devuelve
   dbInfo = dbInfo.map((dog) => {
     return {
       id: dog.id,
@@ -59,16 +55,17 @@ const getDbData = async () => {
       image: dog.image,
       createInDb: dog.createInDb,
       height: dog.height,
-      temperament: dog.temperaments.map((temperament) => temperament.name),
+      temperament: dog.temperaments,
     };
   });
-
-  console.log(dbInfo);
+  //.map((temperament) => temperament.name)
+  console.log(dbInfo.temperament);
   return dbInfo;
 };
-//Ahora toca unir mi pedido a la API como mis datos de la Bd
+//Ahora toca unir mi FUNCION que trae data de API y la FUNCION que trae de la Bd
 const getTodo = async () => {
   const apiInfo = await getApiData();
+  //Este se encarga de agregarle peso a los perros que poseen el NaN
   const revision = apiInfo.map((dog) => {
     if (dog.name == "Olde English Bulldogge") dog.weight = ["22 - 30"];
     if (dog.name == "Smooth Fox Terrier") dog.weight = ["6 - 8"];
@@ -76,7 +73,6 @@ const getTodo = async () => {
   });
   const dbInfo = await getDbData();
   return [...dbInfo, ...revision];
-  // return resultadoFinal;
 };
 //Comienzo con mis request, funciona tanto como para traer todos como para QUERY params
 router.get("/dogs", async (req, res) => {
@@ -103,23 +99,29 @@ router.get("/dogs/:idRaza", async (req, res) => {
     const todos = await getTodo();
     //Segundo, filtro y matcheo con la raza correspondiente
     const filtrado = todos.filter((r) => r.id == idRaza);
+    console.log(filtrado[0].temperament);
     filtrado.length
       ? res.status(200).send(filtrado)
-      : res.status(404).send("No existe tal raza de perro");
+      : res.status(404).send("No existe tal raza de perro con ese ID");
   } catch (error) {
     res.status(400).send("Error server");
   }
 });
-/////////////////////// cambies
+///// CREAR PERRO
 router.post("/dogs", async (req, res) => {
   try {
+    //lo que necesito por body (formulario frontEnd)
     const { name, weight, life_span, image, height, temperaments } = req.body;
+    //todo lo que tenga el modelo TEMPERAMENT donde el name sea temperaments(body)
     const newTemperament = await Temperament.findAll({
       where: { name: temperaments },
     });
+    //si no hay temperament que encuentre CREA con el dato que se trae por BODY
     if (!newTemperament) {
       newTemperament = await Temperament.create({ name: temperaments });
+      res.status(201).send("TEMP CREADA");
     }
+    //guardo lo que se crea en mi MODELO de perro en una constante
     const creadoDog = await Dog.create({
       name,
       weight,
@@ -127,26 +129,22 @@ router.post("/dogs", async (req, res) => {
       image,
       height,
     });
-    // //Mapear los temperamentos
-    // const temperamentoDog = await Temperament.findAll({
-    //   where: { name: temperament },
-    // });
+    //a la informacion anterior le hago el metodo ADD que lo asocia con el modelo TEMP y le pasa la variable que tiene la info del TEMPERAMENTO, LO UNE
     await creadoDog.addTemperament(newTemperament);
-    res.status(201).send(creadoDog);
+    res.status(201).send("Perro creado exitosamente");
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send("No se pudo crear el perro");
   }
 });
-//Asociar ambos (add...) significa que trae de la tabla lo que se pasa por param. METODO DE SEQUELIZE
-
-//////////////////////
+/////
 router.get("/temperaments", async (req, res) => {
-  //Me traigo info de la API
+  //Me traigo TODA la info de la API
   const infoApi = await axios.get(
     `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
   );
-  //Me guardo la info en mi DB
+  //Mapeo la INFO que pedi anteriormente en busca de la PROPIEDAD TEMPERAMENT y la guardo
   let mapeadaApi = infoApi.data.map((t) => t.temperament);
+  //A esa informacion le aplico metodos para poder manipularlo mejor
   const tempera = mapeadaApi.join(",").split(",");
   tempera.forEach(async (t) => {
     await Temperament.findOrCreate({

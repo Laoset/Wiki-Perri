@@ -39,13 +39,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Dog, Temperament } = sequelize.models;
 
-// Aca vendrian las relaciones
+///////// Las RELACIONES de muchos a muchos mediante una TABLA INTERMEDIA
 Dog.belongsToMany(Temperament, {
   through: "temperaments_dog",
 });
 Temperament.belongsToMany(Dog, {
   through: "temperaments_dog",
 });
+/////////
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

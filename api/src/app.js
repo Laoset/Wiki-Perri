@@ -15,7 +15,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
-  //MODIFICO PARA RUTEAR A MI FRONT EN VERCEL
+  //MODIFICO para que pueda hacer peticiones a la URL escrita
   res.header(
     "Access-Control-Allow-Origin",
     "https://deploy-perritos.vercel.app"
