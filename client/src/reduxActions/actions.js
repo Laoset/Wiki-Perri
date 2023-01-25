@@ -39,7 +39,7 @@ export const searchDog = (payload) => {
 export const searchIdDog = (id) => {
   return async function (dispatch) {
     let dataPerriId = await Axios.get(
-      `https://deployperritos-production.up.railway.app//dogs/${id}`
+      `https://deployperritos-production.up.railway.app/dogs/${id}`
     );
     return dispatch({
       type: "SEARCH_ID",
@@ -77,7 +77,7 @@ export const orderByWeight = (payload) => {
 export const postDog = (payload) => {
   return async function (dispatch) {
     const postPerri = await Axios.post(
-      "https://deployperritos-production.up.railway.app//dogs",
+      "https://deployperritos-production.up.railway.app/dogs",
       payload
     );
     return dispatch({
