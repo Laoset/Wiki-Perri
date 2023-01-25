@@ -11,7 +11,6 @@ import PaginadoSearchBar from "../Paginado y Searchbar/PaginadoSearchBar";
 //ESTILO
 import styles from "./Home.module.css";
 import { Filtros } from "../Filtros/Filtros";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   //Loader
