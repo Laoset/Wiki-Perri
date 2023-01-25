@@ -10,6 +10,7 @@ const initialState = {
   //Estado de detalle de perro
   detail: [],
 };
+
 function rootReducer(state = initialState, { type, payload }) {
   switch (type) {
     case "GET_DOGS":

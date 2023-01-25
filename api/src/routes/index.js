@@ -46,7 +46,7 @@ const getDbData = async () => {
     ],
   });
   //La modifico una vez unida con el Temperamento para luego mapearla en busca de cada DOG,mapeo el TEMPERAMENTO ya que me devuelve
-  dbInfo = dbInfo.map((dog) => {
+  let info = await dbInfo.map((dog) => {
     return {
       id: dog.id,
       name: dog.name,
@@ -55,20 +55,26 @@ const getDbData = async () => {
       image: dog.image,
       createInDb: dog.createInDb,
       height: dog.height,
-      temperament: dog.temperaments,
+      temperament: dog.temperament,
     };
   });
-  //.map((temperament) => temperament.name)
-  console.log(dbInfo.temperament);
-  return dbInfo;
+  info.forEach(async (dog) => {
+    let temperament = await Temperament.findByPk(dog.temperament);
+    dog.temperament = temperament.name;
+  });
+  return info;
 };
 //Ahora toca unir mi FUNCION que trae data de API y la FUNCION que trae de la Bd
 const getTodo = async () => {
   const apiInfo = await getApiData();
-  //Este se encarga de agregarle peso a los perros que poseen el NaN
+  //Este se encarga de agregarle PESO y TEMPS a los perros que poseen el NaN
   const revision = apiInfo.map((dog) => {
     if (dog.name == "Olde English Bulldogge") dog.weight = ["22 - 30"];
     if (dog.name == "Smooth Fox Terrier") dog.weight = ["6 - 8"];
+    if (dog.id == 261) dog.temperament = "DEFAULT TEMPERAMENT";
+    if (dog.id == 211) dog.temperament = "DEFAULT TEMPERAMENT";
+    if (dog.id == 196) dog.temperament = "DEFAULT TEMPERAMENT";
+    if (dog.id == 197) dog.temperament = "DEFAULT TEMPERAMENT";
     return dog;
   });
   const dbInfo = await getDbData();
@@ -139,19 +145,21 @@ router.post("/dogs", async (req, res) => {
 /////
 router.get("/temperaments", async (req, res) => {
   //Me traigo TODA la info de la API
-  const infoApi = await axios.get(
+  let infoApi = await axios.get(
     `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
   );
   //Mapeo la INFO que pedi anteriormente en busca de la PROPIEDAD TEMPERAMENT y la guardo
   let mapeadaApi = infoApi.data.map((t) => t.temperament);
+  console.log(mapeadaApi.length);
   //A esa informacion le aplico metodos para poder manipularlo mejor
-  const tempera = mapeadaApi.join(",").split(",");
+  let tempera = mapeadaApi.join(",").split(",");
   tempera.forEach(async (t) => {
     await Temperament.findOrCreate({
       where: { name: t },
     });
   });
-  const todosTemperamentos = await Temperament.findAll();
+  let todosTemperamentos = await Temperament.findAll();
   res.status(200).send(todosTemperamentos);
+  console.log(todosTemperamentos.length);
 });
 module.exports = router;

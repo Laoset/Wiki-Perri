@@ -11,18 +11,33 @@ import {
   getTemperaments,
   filterByAllDogs,
 } from "../../reduxActions/actions";
-
+// const uniqueTemperaments = (temperaments) => {
+//   const uniqueNames = [];
+//   return temperaments.filter((temperament) => {
+//     if (uniqueNames.indexOf(temperament.name) === -1) {
+//       uniqueNames.push(temperament.name);
+//       return true;
+//     }
+//     return false;
+//   });
+// };
 export const Filtros = ({ setCurrentPage, setOrden }) => {
   const dispatch = useDispatch();
   //Me traigo del estado mis temperamentos para poder mapear y hacer options
-  const temps = useSelector((state) => state.temperaments);
-  //ESTADOS para realizar la logica de ordenamientos
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [selectedOption, setSelectedOption] = useState("");
+  let temps = useSelector((state) => state.temperaments);
+  //Filtradado de NAMES unicos
+  let uniqueNames = [...new Set(temps.map((temp) => temp.name.trim()))];
+  let uniqueTemps = uniqueNames.map((name) => {
+    return temps.find((temp) => temp.name.trim() === name);
+  });
+  let uniqueTempsSinVacio = uniqueTemps.filter(
+    (temp) => temp.name.trim() !== ""
+  );
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
+
   //Click y recarga mis dogs
   const handleClick = (evento) => {
     evento.preventDefault();
@@ -86,7 +101,7 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
           onChange={(e) => handleFilterTemperament(e)}
         >
           <option value="all">Temperaments</option>
-          {temps?.map((t) => {
+          {uniqueTempsSinVacio?.map((t) => {
             return (
               <option value={t.name} key={t.id}>
                 {t.name}
