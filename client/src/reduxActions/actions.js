@@ -2,7 +2,9 @@ import Axios from "axios";
 //Traer razas y temperamentos de la API
 export const getRazas = () => {
   return async function (dispatch) {
-    let infoAfuera = await Axios.get("http://localhost:3001/dogs");
+    let infoAfuera = await Axios.get(
+      "https://deployperritos-production.up.railway.app/dogs"
+    );
     return dispatch({
       type: "GET_DOGS",
       payload: infoAfuera.data,
@@ -13,7 +15,7 @@ export const getRazas = () => {
 export const getTemperaments = () => {
   return async function (dispatch) {
     let infoTemperaments = await Axios.get(
-      "http://localhost:3001/temperaments"
+      "https://deployperritos-production.up.railway.app/temperaments"
     );
     return dispatch({
       type: "GET_TEMPERAMENTS",
@@ -25,7 +27,7 @@ export const getTemperaments = () => {
 export const searchDog = (payload) => {
   return async function (dispatch) {
     let dataPerri = await Axios.get(
-      `http://localhost:3001/dogs?name=${payload}`
+      `https://deployperritos-production.up.railway.app/dogs?name=${payload}`
     );
     return dispatch({
       type: "SEARCH_DOG",
@@ -36,7 +38,9 @@ export const searchDog = (payload) => {
 //Search ID dogs para DETAIL COMPONENT
 export const searchIdDog = (id) => {
   return async function (dispatch) {
-    let dataPerriId = await Axios.get(`http://localhost:3001/dogs/${id}`);
+    let dataPerriId = await Axios.get(
+      `https://deployperritos-production.up.railway.app//dogs/${id}`
+    );
     return dispatch({
       type: "SEARCH_ID",
       payload: dataPerriId.data,
@@ -72,7 +76,10 @@ export const orderByWeight = (payload) => {
 //POST DE PERRITO
 export const postDog = (payload) => {
   return async function (dispatch) {
-    const postPerri = await Axios.post("http://localhost:3001/dogs", payload);
+    const postPerri = await Axios.post(
+      "https://deployperritos-production.up.railway.app//dogs",
+      payload
+    );
     return dispatch({
       type: "POST_DOG",
       payload: postPerri,
