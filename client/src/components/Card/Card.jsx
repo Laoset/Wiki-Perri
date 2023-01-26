@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
-const Card = ({ id, name, image, temperament, weight }) => {
+const Card = ({ id, name, image, temperament, weight, createInDb }) => {
   return (
     <div className={styles.container}>
       <div className={styles.tarjetas}>
@@ -13,7 +13,9 @@ const Card = ({ id, name, image, temperament, weight }) => {
               <h3 className={styles.name}>{name}</h3>
             </Link>
 
-            <h2 className={styles.temperament}>{temperament}</h2>
+            <h2 className={styles.temperament}>
+              {createInDb ? temperament.join() : temperament}
+            </h2>
             <h2 className={styles.weight}>Weight: {weight} kg</h2>
           </div>
         </div>

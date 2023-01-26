@@ -74,7 +74,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case "ORDER_BY_ALF":
       let orderSort =
         payload === "asc"
-          ? state.allDogs.sort(function (a, b) {
+          ? state.dogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return 1;
               }
@@ -83,7 +83,7 @@ function rootReducer(state = initialState, { type, payload }) {
               }
               return 0;
             })
-          : state.allDogs.sort(function (a, b) {
+          : state.dogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return -1;
               }
@@ -94,12 +94,12 @@ function rootReducer(state = initialState, { type, payload }) {
             });
       return {
         ...state,
-        allDogs: orderSort,
+        allDesorderDogs: orderSort,
       };
     case "ORDER_BY_WEIGHT":
       const orderWeight =
         payload === "menor"
-          ? state.allDogs.sort(function (a, b) {
+          ? state.dogs.sort(function (a, b) {
               //ParseInt para convertir a num mi primer valor de la cadena de string que devuelve weight
               if (parseInt(a.weight) > parseInt(b.weight)) {
                 return 1;
@@ -109,7 +109,7 @@ function rootReducer(state = initialState, { type, payload }) {
               }
               return 0;
             })
-          : state.allDogs.sort(function (a, b) {
+          : state.dogs.sort(function (a, b) {
               if (parseInt(a.weight) > parseInt(b.weight)) {
                 return -1;
               }

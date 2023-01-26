@@ -82,6 +82,7 @@ const Home = () => {
                       image={p.image}
                       temperament={p.temperament}
                       weight={p.weight}
+                      createInDb={p.createInDb}
                     />
                   );
                 })}

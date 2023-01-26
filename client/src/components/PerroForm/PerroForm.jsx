@@ -82,18 +82,20 @@ const PerroForm = () => {
   const handleSubmit = (evento) => {
     evento.preventDefault();
     //Uno ambos weight para mandarlos como unica cadena a la propiedad weight
-    const suma = info.weightmin.concat(` - ${info.weightmax}`);
-    info.weight.push(suma);
+    const sumaWeight = info.weightmin.concat(` - ${info.weightmax}`);
+    info.weight.push(sumaWeight);
     //Lo mismo pero en HEIGHT
     const sumaHeight = info.heightmin.concat(` - ${info.heightmax}`);
     info.height.push(sumaHeight);
+    //Temp?
+    info.temperaments = info.temperaments.join(",").split(",");
+
     //Condicional de submit
     if (error.length === undefined || info.name === String) {
       dispatch(postDog(info));
       alert("Creado exitosamente");
       history.push("/home");
       dispatch(getRazas());
-
       console.log(info);
     } else {
       alert("Te falta completar informacion");
