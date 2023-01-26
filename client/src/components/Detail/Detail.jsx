@@ -42,7 +42,7 @@ const Detail = () => {
             </h3>
 
             <h3 className={styles.h3tempera}>
-              Temperamentos
+              Temperaments
               <p className={styles.temperamentos}>
                 {!doges[0].createInDb
                   ? doges[0].temperament
@@ -55,7 +55,7 @@ const Detail = () => {
         <p>LOADING</p>
       )}
       <Link to="/home">
-        <button className={styles.bt}>VOLVER</button>
+        <button className={styles.bt}>BACK</button>
       </Link>
     </div>
   );

@@ -12,11 +12,10 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
             <Link className={styles.link} to={"/detail/" + id}>
               <h3 className={styles.name}>{name}</h3>
             </Link>
-
+            <h2 className={styles.weight}>Weight: {weight} kg</h2>
             <h2 className={styles.temperament}>
               {createInDb ? temperament.join() : temperament}
             </h2>
-            <h2 className={styles.weight}>Weight: {weight} kg</h2>
           </div>
         </div>
       </div>
