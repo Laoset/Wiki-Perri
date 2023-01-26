@@ -9,7 +9,6 @@ import styles from "./Detail.module.css";
 const Detail = () => {
   //Loader
   const [loading, setLoading] = useState(false);
-
   const dispatch = useDispatch();
   const { id } = useParams();
   //ESTADO Y MONTAJE

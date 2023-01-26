@@ -11,7 +11,7 @@ const About = () => {
           </h1>
         </div>
         <h3 className={styles.h3Mi}>
-          I am currently attending Henry's FullStack Bootcamp. This website is
+          I am currently attending 'Henry FullStack Bootcamp'. This website is
           part of it and is called{" "}
           <span className={styles.spansito}>Individual Project</span>, the idea
           is to create the site from 0, working with Database, Back End and
