@@ -11,8 +11,9 @@
   width: auto;
 }
 .title {
+  font-family: "Courier New", Courier, monospace;
   font-size: 5rem;
-  color: #273746;
+  color: #fdf2e9;
 }
 .bt {
   transform: rotateX(32deg);
