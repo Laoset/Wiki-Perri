@@ -43,7 +43,7 @@ const Home = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3500);
+    }, 3000);
     dispatch(getRazas());
   }, [dispatch]);
 
