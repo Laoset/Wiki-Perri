@@ -16,6 +16,12 @@ const PerroForm = () => {
     if (!info.name) {
       errors.name = "Se requiere un nombre";
     }
+    if (info.heightmin <= 0) {
+      errors.heightmin = "El minimo es 15 cm";
+    }
+    if (info.heightmax > 90) {
+      errors.heightmax = "El maximo es 90cm";
+    }
     if (!info.heightmin || !info.heightmax) {
       errors.height = "Se requiere altura";
     }
@@ -141,6 +147,9 @@ const PerroForm = () => {
                 onChange={(e) => handleChange(e)}
                 placeholder="Min"
               />
+              {error.heightmin && (
+                <p className={styles.errors}>{error.heightmin}</p>
+              )}
               <input
                 autoComplete="off"
                 className={styles.inputs}
@@ -150,6 +159,10 @@ const PerroForm = () => {
                 onChange={(e) => handleChange(e)}
                 placeholder="Max"
               />
+              {error.heightmax && (
+                <p className={styles.errors}>{error.heightmax}</p>
+              )}
+
               {error.height && <p className={styles.errors}>{error.height}</p>}
               {/* WEIGHT SECTION */}
               <label className={styles.labels}>Weight</label>
