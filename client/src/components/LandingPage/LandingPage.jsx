@@ -9,7 +9,7 @@ const LandingPage = () => {
       <div>
         <h1 className={styles.title}>Welcome to Wiki Perri</h1>
         <Link to="/home">
-          <button className={styles.bt}>INGRESAR</button>
+          <button className={styles.bt}>ENTER</button>
         </Link>
       </div>
     </div>

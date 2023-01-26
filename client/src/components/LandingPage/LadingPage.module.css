@@ -12,19 +12,19 @@
 }
 .title {
   font-size: 5rem;
-  color: whitesmoke;
+  color: #273746;
 }
 .bt {
   transform: rotateX(32deg);
   border-radius: 10px;
   border-color: white;
   font-size: large;
-  color: black;
-  font-weight: 900;
-  padding: 20px 50px;
+  color: #273746;
+  font-weight: 600;
+  padding: 20px 40px;
   perspective: 800px;
   cursor: pointer;
-  background-color: white;
+  background-color: #fdf2e9;
   transform-style: preserve-3d;
   transition: transform 0.2s;
 }
