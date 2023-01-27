@@ -132,8 +132,6 @@ const PerroForm = () => {
       temperaments: [...info.temperaments, evento.target.value],
     });
   };
-  // console.log(Object.keys(error).length);
-  // console.log(error);
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
   const handleSubmit = (evento) => {
     evento.preventDefault();
@@ -150,6 +148,7 @@ const PerroForm = () => {
       dispatch(postDog(info));
       alert("Successfully created");
       history.push("/home");
+      //Luego de llegar a home hago un refresh mediante el getRazas, asi me muestra el perro nuevo
       dispatch(getRazas());
       console.log(info);
     } else {
