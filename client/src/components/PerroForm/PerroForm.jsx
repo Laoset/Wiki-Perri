@@ -38,8 +38,8 @@ const PerroForm = () => {
     if (info.heightmax > 90) {
       errors.heightmax = "Maximum height 90cm";
     }
-    if (info.heightmax < info.heightmin) {
-      errors.heightmax = "No puede ser menor al minimo";
+    if (parseInt(info.heightmax) < parseInt(info.heightmin)) {
+      errors.heightmax = "Cannot be less than the minimum";
     }
     if (!info.heightmin || !info.heightmax) {
       errors.height = "Height required";
@@ -58,8 +58,8 @@ const PerroForm = () => {
     if (info.weightmax > 120) {
       errors.weightmax = "Maximum weight 120kg";
     }
-    if (info.weightmax < info.weightmin) {
-      errors.weightmax = "No puede ser menor al minimo";
+    if (parseInt(info.weightmax) < parseInt(info.weightmin)) {
+      errors.weightmax = "Cannot be less than the minimum";
     }
     if (!info.weightmin || !info.weightmax) {
       errors.weight = "Weight required";
@@ -83,6 +83,7 @@ const PerroForm = () => {
 
     return errors;
   };
+  console.log(info);
   const dispatch = useDispatch();
   const history = useHistory();
   const tempera = useSelector((state) => state.temperaments);
@@ -116,8 +117,6 @@ const PerroForm = () => {
       //lo de abajo hace referencia a todos los atributos NAMES que tienen mis elementos renderizados, osea los que se van modifcando
       [evento.target.name]: evento.target.value,
     });
-    console.log(info);
-
     //La parte validadora
     setError(
       validador({
@@ -133,7 +132,6 @@ const PerroForm = () => {
       temperaments: [...info.temperaments, evento.target.value],
     });
   };
-  console.log(info);
   // console.log(Object.keys(error).length);
   // console.log(error);
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
@@ -149,7 +147,7 @@ const PerroForm = () => {
       info.height.push(sumaHeight);
       // //Temp?
       // info.temperaments = info.temperaments.join(",").split(",");
-      // dispatch(postDog(info));
+      dispatch(postDog(info));
       alert("Successfully created");
       history.push("/home");
       dispatch(getRazas());
