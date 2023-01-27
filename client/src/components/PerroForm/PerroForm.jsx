@@ -140,10 +140,10 @@ const PerroForm = () => {
     //Condicional de submit
     if (Object.keys(error).length === 0 && info.name) {
       //Uno ambos weight para mandarlos como unica cadena a la propiedad weight
-      const sumaWeight = info.weightmin.concat(`- ${info.weightmax}`);
+      const sumaWeight = info.weightmin.concat(` - ${info.weightmax}`);
       info.weight.push(sumaWeight);
       //Lo mismo pero en HEIGHT
-      const sumaHeight = info.heightmin.concat(`- ${info.heightmax}`);
+      const sumaHeight = info.heightmin.concat(` - ${info.heightmax}`);
       info.height.push(sumaHeight);
       //Temp?
       info.temperaments = info.temperaments.join(",").split(",");
