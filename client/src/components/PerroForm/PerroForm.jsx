@@ -83,7 +83,6 @@ const PerroForm = () => {
 
     return errors;
   };
-  console.log(info);
   const dispatch = useDispatch();
   const history = useHistory();
   const tempera = useSelector((state) => state.temperaments);
