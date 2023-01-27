@@ -51,9 +51,8 @@
   display: flex;
   flex-direction: row;
   background-color: #ebedef;
-
   border-radius: 20px;
-  height: 40rem;
+  height: 47rem;
   width: 45rem;
   max-height: 60rem;
 }
@@ -74,7 +73,7 @@
   transform: rotateX(38deg) translateY(7px);
 }
 
-.title {
+.title2 {
   font-family: "Courier New", Courier, monospace;
   font-size: 4rem;
   font-size: bold;
@@ -107,7 +106,13 @@
 .labels {
   font-size: 22px;
   color: black;
-  margin-top: 10px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+.title {
+  font-size: 22px;
+  color: black;
+  margin-top: 2rem;
   margin-bottom: 2px;
 }
 .errors {
@@ -161,7 +166,8 @@
   cursor: pointer;
   transition: transform 0.2s;
   background-color: #fdf2e9;
-  margin-top: 5rem;
+  margin-top: 10rem;
+  margin-bottom: -2rem;
 }
 .submit:hover {
   transform: rotateX(38deg) translateY(7px);

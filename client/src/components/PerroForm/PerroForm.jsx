@@ -11,26 +11,74 @@ const PerroForm = () => {
   const [loading, setLoading] = useState(false);
   //Validador
   const validador = (info) => {
+    //Variables regex
+    const nameRegex = /^[a-zA-Z ]{2,30}$/;
+    const numberRegex = /^[0-9]*$/;
     //variable donde guardo mis errores
     let errors = {};
+    //NAME
     if (!info.name) {
-      errors.name = "Se requiere un nombre";
+      //Si el nombre esta vacio
+      errors.name = "A name is required";
+    } else if (!nameRegex.test(info.name)) {
+      //Si no esta vacio, debe cumplir esa variable regex
+      errors.name = "Only letters and spaces are allowed in the name";
     }
-    if (info.heightmin <= 0) {
-      errors.heightmin = "El minimo es 15 cm";
+    //ALTURA
+    if (
+      !numberRegex.test(info.heightmin) ||
+      !numberRegex.test(info.heightmax)
+    ) {
+      //Si la altura no coincide
+      errors.height = "Only number";
+    }
+    if (info.heightmin <= 14) {
+      errors.heightmin = "Minimum height 15cm";
     }
     if (info.heightmax > 90) {
-      errors.heightmax = "El maximo es 90cm";
+      errors.heightmax = "Maximum height 90cm";
+    } else if (info.heightmax < info.heightmin) {
+      errors.heightmax = "No puede ser menor al minimo";
     }
     if (!info.heightmin || !info.heightmax) {
-      errors.height = "Se requiere altura";
+      errors.height = "Height required";
+    }
+    //PESO
+    if (
+      !numberRegex.test(info.weightmin) ||
+      !numberRegex.test(info.weightmax)
+    ) {
+      //Si el peso no coincide
+      errors.weight = "Only number";
+    }
+    if (info.weightmin <= 1) {
+      errors.weightmin = "Minimum weight 2kg";
+    }
+    if (info.weightmax > 120) {
+      errors.weightmax = "Maximum weight 120kg";
+    } else if (info.weightmax < info.weightmin) {
+      errors.weightmax = "No puede ser menor al minimo";
     }
     if (!info.weightmin || !info.weightmax) {
-      errors.weight = "Se requiere peso";
+      errors.weight = "Weight required";
     }
-    if (!info.life_span) {
-      errors.life_span = "Se requiere expectativa de vida";
+
+    //ESPERANZA DE VIDA
+    if (info.life_span.length > 1) {
+      if (info.life_span >= 30) {
+        errors.life_span = "Maximum 30 years";
+      }
+      if (info.life_span <= 0) {
+        errors.life_span = "Minimum  1 years";
+      }
     }
+    //IMAGEN
+    if (info.image.length > 1) {
+      if (info.image <= 0 || info.image >= 0) {
+        errors.image = "The image should not be numbers";
+      }
+    }
+
     return errors;
   };
   const dispatch = useDispatch();
@@ -52,11 +100,10 @@ const PerroForm = () => {
     height: [],
   });
   //BORRAR TEMPERAMENTOS
-  const handleDeleteTemp = (el) => {
-    el.preventDefault();
+  const handleDeleteTemp = (t) => {
     setInfo({
       ...info,
-      temperaments: info.temperaments.filter((e) => e !== el),
+      temperaments: info.temperaments.filter((e) => e !== t),
     });
   };
   //PARA MIS INPUTS
@@ -84,27 +131,29 @@ const PerroForm = () => {
       temperaments: [...info.temperaments, evento.target.value],
     });
   };
+  console.log(info);
+  // console.log(Object.keys(error).length);
+  // console.log(error);
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
   const handleSubmit = (evento) => {
     evento.preventDefault();
-    //Uno ambos weight para mandarlos como unica cadena a la propiedad weight
-    const sumaWeight = info.weightmin.concat(` - ${info.weightmax}`);
-    info.weight.push(sumaWeight);
-    //Lo mismo pero en HEIGHT
-    const sumaHeight = info.heightmin.concat(` - ${info.heightmax}`);
-    info.height.push(sumaHeight);
-    //Temp?
-    info.temperaments = info.temperaments.join(",").split(",");
-
     //Condicional de submit
-    if (error.length === undefined || info.name === String) {
+    if (Object.keys(error).length === 0 && info.name) {
+      //Uno ambos weight para mandarlos como unica cadena a la propiedad weight
+      const sumaWeight = info.weightmin.concat(`- ${info.weightmax}`);
+      info.weight.push(sumaWeight);
+      //Lo mismo pero en HEIGHT
+      const sumaHeight = info.heightmin.concat(`- ${info.heightmax}`);
+      info.height.push(sumaHeight);
+      //Temp?
+      info.temperaments = info.temperaments.join(",").split(",");
       dispatch(postDog(info));
-      alert("Creado exitosamente");
+      alert("Successfully created");
       history.push("/home");
       dispatch(getRazas());
       console.log(info);
     } else {
-      alert("Te falta completar informacion");
+      alert("You have missing or incorrect information");
     }
   };
   useEffect(() => {
@@ -122,11 +171,11 @@ const PerroForm = () => {
         </div>
       ) : (
         <div className={styles.container}>
-          <h1 className={styles.title}>Crea tu Perro</h1>
+          <h1 className={styles.title2}>Create your breed</h1>
           <form className={styles.form}>
             <div className={styles.inputContainer}>
               {/* NAME SECTION */}
-              <label className={styles.labels}>Name</label>
+              <label className={styles.title}>Name</label>
               <input
                 autoComplete="off"
                 className={styles.inputs}
@@ -175,6 +224,9 @@ const PerroForm = () => {
                 onChange={(e) => handleChange(e)}
                 placeholder="Min"
               />
+              {error.weightmin && (
+                <p className={styles.errors}>{error.weightmin}</p>
+              )}
               <input
                 autoComplete="off"
                 className={styles.inputs}
@@ -184,6 +236,10 @@ const PerroForm = () => {
                 onChange={(e) => handleChange(e)}
                 placeholder="Max"
               />
+              {error.weightmax && (
+                <p className={styles.errors}>{error.weightmax}</p>
+              )}
+
               {error.weight && <p className={styles.errors}>{error.weight}</p>}
               {/* LIFE SPAN SECTION */}
               <label className={styles.labels}>Life span</label>
@@ -208,6 +264,7 @@ const PerroForm = () => {
                 type="text"
                 onChange={(e) => handleChange(e)}
               />
+              {error.image && <p className={styles.errors}>{error.image}</p>}
               {/* TEMPERAMENT SECTION */}
               <select
                 required
@@ -228,8 +285,9 @@ const PerroForm = () => {
                   <div key={index} className={styles.te}>
                     <p className={styles.pTemp}>{t}</p>
                     <button
-                      onClick={() => handleDeleteTemp(t)}
+                      type="button"
                       className={styles.btTemp}
+                      onClick={() => handleDeleteTemp(t)}
                     >
                       X
                     </button>
@@ -246,7 +304,7 @@ const PerroForm = () => {
             <div className={styles.sideImg}></div>
           </form>
           <Link to="/home">
-            <button className={styles.bt}>Volver</button>
+            <button className={styles.bt}>Back</button>
           </Link>
         </div>
       )}
