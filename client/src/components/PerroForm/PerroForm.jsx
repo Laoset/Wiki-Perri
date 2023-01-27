@@ -37,7 +37,8 @@ const PerroForm = () => {
     }
     if (info.heightmax > 90) {
       errors.heightmax = "Maximum height 90cm";
-    } else if (info.heightmax < info.heightmin) {
+    }
+    if (info.heightmax < info.heightmin) {
       errors.heightmax = "No puede ser menor al minimo";
     }
     if (!info.heightmin || !info.heightmax) {
@@ -56,7 +57,8 @@ const PerroForm = () => {
     }
     if (info.weightmax > 120) {
       errors.weightmax = "Maximum weight 120kg";
-    } else if (info.weightmax < info.weightmin) {
+    }
+    if (info.weightmax < info.weightmin) {
       errors.weightmax = "No puede ser menor al minimo";
     }
     if (!info.weightmin || !info.weightmax) {
