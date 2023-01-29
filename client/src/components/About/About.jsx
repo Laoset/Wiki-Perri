@@ -1,5 +1,7 @@
 import React from "react";
+//Para volver al home
 import { Link } from "react-router-dom";
+//Estilo
 import styles from "./About.module.css";
 const About = () => {
   return (

@@ -67,7 +67,7 @@ const PerroForm = () => {
 
     //ESPERANZA DE VIDA
     if (info.life_span.length > 1) {
-      if (info.life_span >= 30) {
+      if (info.life_span > 30) {
         errors.life_span = "Maximum 30 years";
       }
       if (info.life_span <= 0) {
@@ -75,7 +75,7 @@ const PerroForm = () => {
       }
     }
     //IMAGEN
-    if (info.image.length > 1) {
+    if (info.image.length >= 1) {
       if (info.image <= 0 || info.image >= 0) {
         errors.image = "The image should not be numbers";
       }

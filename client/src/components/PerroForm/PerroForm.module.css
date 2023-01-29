@@ -5,8 +5,10 @@
   align-items: center;
   height: 100vh;
   background-color: #fdf2e9;
-  animation: move 1s ease-in-out;
+  animation: move 2s ease-in-out;
+  animation-delay: 3.2s;
 }
+/* Delay para que combine con mi loader */
 @keyframes move {
   from {
     transform: translateY(-100%);

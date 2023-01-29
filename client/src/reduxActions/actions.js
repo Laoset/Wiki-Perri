@@ -92,7 +92,7 @@ export const postDog = (payload) => {
     });
   };
 };
-//TODO LOS PERRITOS
+//TODO LOS PERRITOS (usado )
 export const filterByAllDogs = () => {
   return {
     type: "FILTER_BY_ALL_DOGS",

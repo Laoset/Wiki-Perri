@@ -45,6 +45,7 @@ const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado }) => {
             {pages?.map((number) => (
               <li className={styles.li} key={number}>
                 <button
+                  type="button"
                   className={styles.button}
                   onClick={() => paginado(number)}
                 >
