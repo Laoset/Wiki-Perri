@@ -18,8 +18,8 @@ server.use((req, res, next) => {
   //MODIFICO para que pueda hacer peticiones a la URL escrita
   res.header(
     "Access-Control-Allow-Origin",
-    // "http://localhost:3000"
-    "https://deploy-perritos.vercel.app"
+    "http://localhost:3000"
+    // "https://deploy-perritos.vercel.app"
   ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
