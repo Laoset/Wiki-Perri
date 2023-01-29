@@ -33,9 +33,7 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
   // });
   // console.log(uniqueTemps);
   //Filtrado limpiando los vacios
-  let uniqueTempsSinVacio = uniqueNames.filter(
-    (temp) => temp.name.trim() !== ""
-  );
+  let uniqueTempsSinVacio = uniqueNames.filter((temp) => temp.name !== "");
   console.log(uniqueTempsSinVacio);
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
