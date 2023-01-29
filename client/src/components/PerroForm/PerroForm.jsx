@@ -142,8 +142,7 @@ const PerroForm = () => {
       //Lo mismo pero en HEIGHT
       const sumaHeight = info.heightmin.concat(` - ${info.heightmax}`);
       info.height.push(sumaHeight);
-      // //Temp?
-      // info.temperaments = info.temperaments.join(",").split(",");
+      //Envio mi perro la INFO SETEADA del form
       dispatch(postDog(info));
       alert("Successfully created");
       history.push("/home");

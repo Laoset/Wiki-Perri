@@ -11,30 +11,22 @@ import {
   getTemperaments,
   filterByAllDogs,
 } from "../../reduxActions/actions";
-// const uniqueTemperaments = (temperaments) => {
-//   const uniqueNames = [];
-//   return temperaments.filter((temperament) => {
-//     if (uniqueNames.indexOf(temperament.name) === -1) {
-//       uniqueNames.push(temperament.name);
-//       return true;
-//     }
-//     return false;
-//   });
-// };
+
 export const Filtros = ({ setCurrentPage, setOrden }) => {
   const dispatch = useDispatch();
   //Me traigo del estado mis temperamentos para poder mapear y hacer options
   let temps = useSelector((state) => state.temperaments);
-  //Filtradado de NAMES unicos
-  let uniqueNames = [...new Set(temps.map((temp) => temp.name.trim()))];
-  console.log(uniqueNames);
-  // let uniqueTemps = uniqueNames.map((name) => {
-  //   return temps.find((temp) => temp.name.trim() === name);
-  // });
-  // console.log(uniqueTemps);
-  //Filtrado limpiando los vacios
-  let uniqueTempsSinVacio = uniqueNames.filter((temp) => temp !== "");
-  console.log(uniqueTempsSinVacio);
+  //Primer paso, SACO los espacios a los temperamentos que lo contienen y ELIMINO los repetidos
+  let noSpace = [...new Set(temps.map((temp) => temp.name.trim()))];
+  console.log(noSpace);
+  //Segundo paso, ahora lo convierto en ARRAY de OBJ , sigo con el STRING VACIO
+  let segundoPaso = noSpace.map((name) => {
+    return temps.find((temp) => temp.name.trim() === name);
+  });
+  //Tercer paso, ELIMINO el string vacio , ahora solo 124 temps
+  let tercerPaso = segundoPaso.filter((temp) => temp.name !== "");
+  console.log(segundoPaso);
+  console.log(tercerPaso);
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     dispatch(getTemperaments());
@@ -103,7 +95,7 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
           onChange={(e) => handleFilterTemperament(e)}
         >
           <option value="all">Temperaments</option>
-          {uniqueTempsSinVacio?.map((t) => {
+          {tercerPaso?.map((t) => {
             return (
               <option value={t.name} key={t.id}>
                 {t.name}

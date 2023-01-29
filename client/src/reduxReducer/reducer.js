@@ -19,6 +19,7 @@ function rootReducer(state = initialState, { type, payload }) {
         dogs: payload,
         allDogs: payload,
         allDesorderDogs: payload,
+        detail: payload,
       };
     case "GET_TEMPERAMENTS":
       return {

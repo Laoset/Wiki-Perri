@@ -6,7 +6,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(".//util/fondoDesenfocado.jpg");
+  background-image: url(".//util/fondo3NoTanDifu.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   font-family: "Courier New", Courier, monospace;
 }
 

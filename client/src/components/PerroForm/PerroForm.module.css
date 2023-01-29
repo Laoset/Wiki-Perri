@@ -6,7 +6,7 @@
   height: 100vh;
   background-color: #fdf2e9;
   animation: move 1s ease-in-out;
-  animation-delay: 3.2s;
+  animation-delay: 2.5s;
 }
 /* Delay para que combine con mi loader */
 @keyframes move {

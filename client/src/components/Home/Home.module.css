@@ -42,7 +42,6 @@
 /* NORMAL RENDERING */
 .padreContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -58,20 +57,21 @@
 .containerCartita {
   display: flex;
   flex-direction: row;
-  justify-content: center;
 }
 .containerSearch {
   width: 15rem;
   display: flex;
+  justify-content: flex-start;
   height: 100%;
 }
 .containerCard {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   column-gap: 5rem;
   row-gap: 1rem;
   height: 100%;
+  width: 100%;
 }
 .containerSyC {
   display: flex;

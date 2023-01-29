@@ -10,16 +10,19 @@ const Detail = () => {
   //Loader
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  //Id que capturo del URL
   const { id } = useParams();
-  //ESTADO Y MONTAJE
+  console.log(id);
+  //Me traigo el estado DETAIL, que contiene info de mi DOG ya ubicado
   const doges = useSelector((state) => state.detail);
-  // const dogi = useSelector((state) => state.dogs);
+  console.log(doges);
+  //Cuando se monta mi componente , cargo el Loader y hago la accion del searchIdDog
   useEffect(() => {
+    dispatch(searchIdDog(id));
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 2500);
-    dispatch(searchIdDog(id));
   }, [dispatch, id]);
 
   return (
@@ -55,9 +58,11 @@ const Detail = () => {
               <h3 className={styles.h3tempera}>
                 Temperaments
                 <p className={styles.temperamentos}>
-                  {!doges[0].createInDb
-                    ? doges[0].temperament
-                    : doges[0].temperament.map((el) => el.name + " ")}
+                  {
+                    doges[0].createInDb // Si es de la API
+                      ? doges[0].temperament.join(", ") // hago esto
+                      : doges[0].temperament //Si no hago esto
+                  }
                 </p>
               </h3>
             </div>
