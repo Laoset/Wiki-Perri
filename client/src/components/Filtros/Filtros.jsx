@@ -28,16 +28,15 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
   //Filtradado de NAMES unicos
   let uniqueNames = [...new Set(temps.map((temp) => temp.name.trim()))];
   console.log(uniqueNames);
-  let uniqueTemps = uniqueNames.map((name) => {
-    return temps.find((temp) => temp.name.trim() === name);
-  });
-  console.log(uniqueTemps);
+  // let uniqueTemps = uniqueNames.map((name) => {
+  //   return temps.find((temp) => temp.name.trim() === name);
+  // });
+  // console.log(uniqueTemps);
   //Filtrado limpiando los vacios
-  let uniqueTempsSinVacio = uniqueTemps.filter(
+  let uniqueTempsSinVacio = uniqueNames.filter(
     (temp) => temp.name.trim() !== ""
   );
   console.log(uniqueTempsSinVacio);
-
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     dispatch(getTemperaments());
