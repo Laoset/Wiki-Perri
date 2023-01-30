@@ -129,3 +129,4 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
     </div>
   );
 };
+export default Filtros;
