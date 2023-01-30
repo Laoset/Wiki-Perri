@@ -77,6 +77,13 @@ export const orderByWeight = (payload) => {
     payload,
   };
 };
+//Probando order por ALTURA
+export const orderByHeight = (payload) => {
+  return {
+    type: "ORDER_BY_HEIGHT",
+    payload,
+  };
+};
 //POST DE PERRITO
 export const postDog = (payload) => {
   return async function (dispatch) {

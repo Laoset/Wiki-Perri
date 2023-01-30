@@ -123,6 +123,32 @@ function rootReducer(state = initialState, { type, payload }) {
         ...state,
         allDesorderDogs: orderWeight,
       };
+    //Probando order por ALTURA
+    case "ORDER_BY_HEIGHT":
+      let orderHeight =
+        payload === "menor"
+          ? state.dogs.sort(function (a, b) {
+              if (parseInt(a.height) > parseInt(b.height)) {
+                return 1;
+              }
+              if (parseInt(b.height) > parseInt(a.height)) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.dogs.sort(function (a, b) {
+              if (parseInt(a.weight) > parseInt(b.weight)) {
+                return -1;
+              }
+              if (parseInt(b.weight) > parseInt(a.weight)) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        allDesorderDogs: orderHeight,
+      };
     default:
       return state;
   }
