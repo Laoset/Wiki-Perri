@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Paginado.module.css";
 
-const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
+const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   //variable que guarda los numeros de las paginas que tengo
   const pages = [];
   //Bucle que realiza la cuenta y genera la cantidad de PAGINAS que tendre en mi PAGINADO
@@ -36,4 +36,4 @@ const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   );
 };
 
-export default PaginadoSearchBar;
+export default Paginado;

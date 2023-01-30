@@ -7,11 +7,11 @@ import { getRazas } from "../../reduxActions/actions";
 //Importo mis componentes
 import Card from "../Card/Card";
 import NavBar from "../NavBar/NavBar";
-import PaginadoSearchBar from "../Paginado y Searchbar/PaginadoSearchBar";
+import Paginado from "../Paginado/Paginado";
+import Filtros from "../Filtros/Filtros";
+import SearchBar from "../SearchBar/SearchBar";
 //ESTILO
 import styles from "./Home.module.css";
-import { Filtros } from "../Filtros/Filtros";
-import SearchBar from "../SearchBar/SearchBar";
 
 const Home = () => {
   //Loader
@@ -86,7 +86,7 @@ const Home = () => {
               </div>
             </div>
             <div className={styles.containerSyC}>
-              <PaginadoSearchBar
+              <Paginado
                 dogsPerPage={dogsPerPage}
                 getDogs={getDogs.length}
                 paginado={paginado}
