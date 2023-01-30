@@ -137,10 +137,10 @@ function rootReducer(state = initialState, { type, payload }) {
               return 0;
             })
           : state.dogs.sort(function (a, b) {
-              if (parseInt(a.weight) > parseInt(b.weight)) {
+              if (parseInt(a.height) > parseInt(b.height)) {
                 return -1;
               }
-              if (parseInt(b.weight) > parseInt(a.weight)) {
+              if (parseInt(b.height) > parseInt(a.height)) {
                 return 1;
               }
               return 0;
