@@ -133,9 +133,9 @@ router.post("/dogs", async (req, res) => {
     });
     //a la informacion anterior le hago el metodo ADD que lo asocia con el modelo TEMP y le pasa la variable que tiene la info del TEMPERAMENTO, LO UNE
     await creadoDog.addTemperament(newTemperament);
-    res.status(201).send("Perro creado exitosamente");
+    res.status(200).send(creadoDog);
   } catch (error) {
-    res.status(500).send("No se pudo crear el perro");
+    res.status(400).send("No se pudo crear el perro, verifique datos");
   }
 });
 /////
@@ -145,9 +145,7 @@ router.get("/temperaments", async (req, res) => {
     `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
   );
   //Mapeo la INFO que pedi anteriormente en busca de la PROPIEDAD TEMPERAMENT y la guardo
-  let mapeadaApi = infoApi.data.map((t) => t.temperament);
-  console.log(mapeadaApi.length);
-  //A esa informacion le aplico metodos para poder manipularlo mejor
+  let mapeadaApi = infoApi.data.map((t) => t.temperament); //A esa informacion le aplico metodos para poder manipularlo mejor
   let tempera = mapeadaApi.join(",").split(",");
   tempera.forEach(async (t) => {
     await Temperament.findOrCreate({

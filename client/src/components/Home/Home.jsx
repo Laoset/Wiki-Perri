@@ -101,5 +101,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//<button onClick={handleClick}>Recargar</button> */

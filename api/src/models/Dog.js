@@ -19,17 +19,22 @@ module.exports = (sequelize) => {
       height: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
+        validator: {
+          notNull: true,
+        },
       },
       weight: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
+        validator: {
+          notNull: true,
+        },
       },
       life_span: {
         type: DataTypes.STRING,
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: true,
       },
       createInDb: {
         type: DataTypes.BOOLEAN,
