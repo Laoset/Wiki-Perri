@@ -11,6 +11,7 @@ import PaginadoSearchBar from "../Paginado y Searchbar/PaginadoSearchBar";
 //ESTILO
 import styles from "./Home.module.css";
 import { Filtros } from "../Filtros/Filtros";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Home = () => {
   //Loader
@@ -61,15 +62,11 @@ const Home = () => {
                 <NavBar />
               </div>
             ) : null}
-            <div className={styles.containerSyC}>
-              <PaginadoSearchBar
-                dogsPerPage={dogsPerPage}
-                getDogs={getDogs.length}
-                paginado={paginado}
-              />
+            <div className={styles.containerSearch}>
+              <SearchBar />
             </div>
             <div className={styles.containerCartita}>
-              <div className={styles.containerSearch}>
+              <div className={styles.containerFiltros}>
                 <Filtros setCurrentPage={setCurrentPage} setOrden={setOrden} />
               </div>
               <div className={styles.containerCard}>
@@ -87,6 +84,14 @@ const Home = () => {
                   );
                 })}
               </div>
+            </div>
+            <div className={styles.containerSyC}>
+              <PaginadoSearchBar
+                dogsPerPage={dogsPerPage}
+                getDogs={getDogs.length}
+                paginado={paginado}
+                currentPage={currentPage}
+              />
             </div>
           </div>
         </div>

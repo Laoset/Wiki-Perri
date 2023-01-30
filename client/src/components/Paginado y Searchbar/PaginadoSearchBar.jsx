@@ -1,20 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Paginado.module.css";
-import { useDispatch } from "react-redux";
-import { searchDog } from "../../reduxActions/actions";
-const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado }) => {
-  //Search section
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
 
-  const searchDoge = (evento) => {
-    evento.preventDefault();
-    setName(evento.target.value);
-  };
-  const submitDoge = (evento) => {
-    evento.preventDefault();
-    dispatch(searchDog(name));
-  };
+const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   //variable que guarda los numeros de las paginas que tengo
   const pages = [];
   //Bucle que realiza la cuenta y genera la cantidad de PAGINAS que tendre en mi PAGINADO
@@ -22,39 +9,28 @@ const PaginadoSearchBar = ({ dogsPerPage, getDogs, paginado }) => {
     //para que comienze en 1
     pages.push(i);
   }
+  console.log(currentPage);
+  console.log(pages.length);
   return (
     <div className={styles.containerPadre}>
-      <div className={styles.searchContainer}>
-        <input
-          type="text"
-          className={styles.input}
-          onChange={(e) => searchDoge(e)}
-          placeholder="Search..."
-        />
-        <button
-          type="submit"
-          className={styles.bt}
-          onClick={(e) => submitDoge(e)}
-        >
-          🔍
-        </button>
-      </div>
-      <div>
-        <nav className={styles.nav}>
-          <ul className={styles.ul}>
-            {pages?.map((number) => (
-              <li className={styles.li} key={number}>
+      <div className={styles.containerHijo}>
+        {pages.length > 1
+          ? pages.map((number) => (
+              <div key={number}>
                 <button
                   type="button"
-                  className={styles.button}
+                  className={
+                    currentPage === number
+                      ? styles.buttonCurrent
+                      : styles.button
+                  }
                   onClick={() => paginado(number)}
                 >
                   {number}
                 </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );

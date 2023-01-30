@@ -58,10 +58,8 @@
   display: flex;
   flex-direction: row;
 }
-.containerSearch {
+.containerFiltros {
   width: 15rem;
-  display: flex;
-  justify-content: flex-start;
   height: 100%;
 }
 .containerCard {
@@ -73,15 +71,21 @@
   height: 100%;
   width: 100%;
 }
+.containerSearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12rem;
+  margin-left: 0.5rem;
+}
 .containerSyC {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.containerSelect {
+/* .containerSelect {
   display: flex;
   flex-direction: column;
-
   justify-content: space-evenly;
   text-align: center;
-}
+} */

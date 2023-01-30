@@ -1,50 +1,10 @@
 .containerPadre {
   display: flex;
-  flex-direction: row;
 }
-.searchContainer {
-  height: 2.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.bt {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  cursor: pointer;
-  margin-left: -27px;
-}
-.input {
-  background: #ebedef;
-  height: 1rem;
-  width: 5rem;
-  padding: 5px;
-  border: 2px solid gray;
-  border-radius: 20px;
-  color: #273746;
-  outline: none;
-  transition: 0.5s;
-}
-.input:hover {
-  width: 10rem;
-  border-radius: 10px;
-}
-.nav {
-  height: 2.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.ul {
+.containerHijo {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   gap: 2px;
-}
-.li {
-  list-style: none;
 }
 .button {
   background-color: #ebedef;
@@ -60,5 +20,21 @@
   margin: 0 2px;
 }
 .button:hover {
+  transform: rotateX(38deg) translateY(7px);
+}
+.buttonCurrent {
+  background-color: #273746;
+  transform: rotateX(32deg);
+  border-radius: 5px;
+  border-color: white;
+  font-size: medium;
+  color: #ebedef;
+  font-weight: 500;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin: 0 2px;
+}
+.buttonCurrent:hover {
   transform: rotateX(38deg) translateY(7px);
 }
