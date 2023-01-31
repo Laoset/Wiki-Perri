@@ -63,10 +63,11 @@ const getDbData = async () => {
 //Ahora toca unir mi FUNCION que trae data de API y la FUNCION que trae de la Bd
 const getTodo = async () => {
   const apiInfo = await getApiData();
-  //Este se encarga de agregarle PESO y TEMPS a los perros que poseen el NaN
+  //Este se encarga de agregarle PESO,ALTURA y TEMPS a los perros que poseen el NaN o no tienen completo
   const revision = apiInfo.map((dog) => {
     if (dog.name == "Olde English Bulldogge") dog.weight = ["22 - 30"];
     if (dog.name == "Smooth Fox Terrier") dog.weight = ["6 - 8"];
+    if (dog.name == "African Hunting Dog") dog.height = ["60 - 76"];
     if (dog.id == 261) dog.temperament = "DEFAULT TEMPERAMENT";
     if (dog.id == 211) dog.temperament = "DEFAULT TEMPERAMENT";
     if (dog.id == 196) dog.temperament = "DEFAULT TEMPERAMENT";
