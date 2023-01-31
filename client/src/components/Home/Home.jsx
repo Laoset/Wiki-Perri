@@ -13,12 +13,30 @@ import SearchBar from "../SearchBar/SearchBar";
 //ESTILO
 import styles from "./Home.module.css";
 
-const Home = ({ currentDogs, setCurrentPage, setOrden }) => {
+const Home = () => {
   //Loader
   const [loading, setLoading] = useState(false);
   //Para despachar mis actions
   const dispatch = useDispatch();
-
+  //Mi reemplazo de mapstateToProps
+  const getDogs = useSelector((state) => state.dogs);
+  //PAGINADO , estado que me indica mi pagina actual y la variable que lo modifica
+  const [currentPage, setCurrentPage] = useState(1);
+  //Util para PAGINADO
+  const [orden, setOrden] = useState("");
+  //PAGINADO, estado que me indica la cantidad de PERROS por pagina que QUIERO y la variable que lo modifica
+  const [dogsPerPage, setdogsPerPage] = useState(8);
+  //PAGINADO, index del ultimo PERRO! esto porque va cambiando la posicion de acuerdo a la pag que este
+  const lastDogIndex = currentPage * dogsPerPage;
+  //PAGINADO, index del primer PERRO!
+  const firstDogIndex = lastDogIndex - dogsPerPage;
+  //PAGINADO, la cantidad actual de PERROS por pagina de acuerdo al index trabajo anteriormente
+  const currentDogs = getDogs.slice(firstDogIndex, lastDogIndex);
+  //PAGINADO, constante que toma el Npagina como parametro (cuando hago click) y modifica mi pagina actual con todo lo anterior tambien
+  const paginado = (pagNumber) => {
+    setCurrentPage(pagNumber);
+  };
+  console.log(currentPage);
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     setLoading(true);
@@ -67,10 +85,10 @@ const Home = ({ currentDogs, setCurrentPage, setOrden }) => {
             </div>
             <div className={styles.containerSyC}>
               <Paginado
-              // dogsPerPage={dogsPerPage}
-              // getDogs={getDogs.length}
-              // paginado={paginado}
-              // currentPage={currentPage}
+                dogsPerPage={dogsPerPage}
+                getDogs={getDogs.length}
+                paginado={paginado}
+                currentPage={currentPage}
               />
             </div>
           </div>
