@@ -67,11 +67,11 @@ const getTodo = async () => {
   const revision = apiInfo.map((dog) => {
     if (dog.name == "Olde English Bulldogge") dog.weight = ["22 - 30"];
     if (dog.name == "Smooth Fox Terrier") dog.weight = ["6 - 8"];
-    if (dog.name == "African Hunting Dog") dog.height = ["60 - 76"];
-    if (dog.id == 261) dog.temperament = "DEFAULT TEMPERAMENT";
-    if (dog.id == 211) dog.temperament = "DEFAULT TEMPERAMENT";
-    if (dog.id == 196) dog.temperament = "DEFAULT TEMPERAMENT";
-    if (dog.id == 197) dog.temperament = "DEFAULT TEMPERAMENT";
+    if (dog.name == "African Hunting Dog") dog.height = "60 - 76";
+    if (dog.id == 261) dog.temperament = "Loyal, Trainable, Gentle";
+    if (dog.id == 211) dog.temperament = "Loyal, Intelligent, Charming";
+    if (dog.id == 196) dog.temperament = "Intelligent, Friendly, Loyal";
+    if (dog.id == 197) dog.temperament = "Intelligent, Friendly, Loyal";
     return dog;
   });
   const dbInfo = await getDbData();
