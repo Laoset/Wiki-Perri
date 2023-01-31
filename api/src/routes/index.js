@@ -86,10 +86,12 @@ router.get("/dogs", async (req, res) => {
     let query = total.filter((p) =>
       p.name.toLowerCase().includes(name.toLowerCase())
     );
+    //A la variable matcheada aplico metodo LENGTH
     query.length
-      ? res.status(200).send(query)
-      : res.status(404).send("Error, no existe tal perro con ese nombre");
+      ? res.status(200).send(query) // Si tiene LENGTH
+      : res.status(404).send("Error, no existe tal perro con ese nombre"); // Si no tiene LENGTH
     //Si no existe ese query mando todos los dogs
+    console.log(`Cantidad de names encontrados por query ${query.length}`);
   } else {
     res.status(200).send(total);
   }
@@ -118,11 +120,11 @@ router.post("/dogs", async (req, res) => {
     const newTemperament = await Temperament.findAll({
       where: { name: temperaments },
     });
-    //si no hay temperament que encuentre CREA con el dato que se trae por BODY
-    if (!newTemperament) {
-      newTemperament = await Temperament.create({ name: temperaments });
-      res.status(201).send("TEMP CREADA");
-    }
+    // //si no hay temperament que encuentre CREA con el dato que se trae por BODY
+    // if (!newTemperament) {
+    //   newTemperament = await Temperament.create({ name: temperaments });
+    //   res.status(201).send("TEMP CREADA");
+    // }
     //guardo lo que se crea en mi MODELO de perro en una constante
     const creadoDog = await Dog.create({
       name,
