@@ -26,8 +26,6 @@ export const Filtros = ({ setCurrentPage, setOrden, orden }) => {
   });
   //Tercer paso, ELIMINO el string vacio , ahora solo 124 temps
   let tercerPaso = segundoPaso.filter((temp) => temp.name !== "");
-  console.log(segundoPaso);
-  console.log(tercerPaso);
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     dispatch(getTemperaments());
@@ -54,7 +52,6 @@ export const Filtros = ({ setCurrentPage, setOrden, orden }) => {
     //Seteo la pagina actual a 1
     setCurrentPage(1);
     setOrden(`Ordenado ${evento.target.value}`);
-    console.log(orden);
   };
 
   //FUNCION QUE ABARCA MIS ORDENAMIENTOS
