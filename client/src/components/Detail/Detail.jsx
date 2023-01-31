@@ -22,7 +22,7 @@ const Detail = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 3500);
   }, [dispatch, id]);
 
   return (
