@@ -111,12 +111,12 @@ router.get("/dogs/:idRaza", async (req, res) => {
     res.status(500).send("Error server");
   }
 });
-///DELETE
+///DELETE DOG
 router.delete("/deleteDog/:id", async (req, res) => {
   try {
-    //Hago uso del metodo destroy de sequelize para borrarlo de mi BDD
+    //Hago uso del metodo DESTROY de sequelize para borrarlo de mi BDD
     await Dog.destroy({
-      //Donde el {id} es lo que tomo de params y elimino de bdd
+      //Donde el {id} es lo que tomo por params y elimino de bdd
       where: {
         id: req.params.id,
       },
@@ -126,7 +126,29 @@ router.delete("/deleteDog/:id", async (req, res) => {
     res.status(400).send("Id incorrecto");
   }
 });
-///// CREAR PERRO
+//UPDATE DOG
+router.put("/dogs/:id", async (req, res) => {
+  try {
+    //Hago uso del metodo UPDATE de sequelize para actualizarlo
+    await Dog.update(
+      {
+        name: req.body.name,
+        weight: req.body.weight,
+        height: req.body.height,
+      },
+      {
+        //Donde el {id} es lo que tomo por params y modifico las propiedades anteriores
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.status(200).send("Modificado correctamente");
+  } catch (error) {
+    res.status(400).send("Id incorrecto");
+  }
+});
+///// POST DOG
 router.post("/dogs", async (req, res) => {
   try {
     //lo que necesito por body (formulario frontEnd)
