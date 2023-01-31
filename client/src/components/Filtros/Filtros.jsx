@@ -13,7 +13,7 @@ import {
   filterByAllDogs,
 } from "../../reduxActions/actions";
 
-export const Filtros = ({ setCurrentPage }) => {
+export const Filtros = ({ setCurrentPage, setOrden }) => {
   const dispatch = useDispatch();
   //Me traigo del estado mis temperamentos para poder mapear y hacer options
   let temps = useSelector((state) => state.temperaments);
@@ -50,9 +50,8 @@ export const Filtros = ({ setCurrentPage }) => {
     dispatch(filterByTemperament(evento.target.value));
     //Seteo la pagina actual a 1
     setCurrentPage(1);
-    // setOrden(`Ordenado ${evento.target.value}`);
+    setOrden(`Ordenado ${evento.target.value}`);
   };
-  // console.log(orden);
   //FUNCION QUE ABARCA MIS ORDENAMIENTOS
   const handleOpChange = (evento) => {
     const selectedOption = evento.target.value;
@@ -61,37 +60,37 @@ export const Filtros = ({ setCurrentPage }) => {
       //Seteo la pagina actual a 1
       setCurrentPage(1);
       //Modifica lo renderizado
-      // setOrden(`Orden ${evento.target.value}`);
+      setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "alfDesc") {
       //Es mandarlo como la ultima opcion ya que no esta especificado el 'desc' en mi reducer
       dispatch(orderByAlf("desc"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
       //Modifica lo renderizado
-      // setOrden(`Orden ${evento.target.value}`);
+      setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "weightMayor") {
       dispatch(orderByWeight("mayor"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
       //Modifica lo renderizado
-      // setOrden(`Orden ${evento.target.value}`);
+      setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "weightMenor") {
       dispatch(orderByWeight("menor"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
       //Modifica lo renderizado
-      // setOrden(`Orden ${evento.target.value}`);
+      setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "heightMayor") {
       //No existe el valor mayor en la action por lo cual toma el valor del 'else'
       dispatch(orderByHeight("mayor"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
-      // setOrden(`Orden ${evento.target.value}`);
+      setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "heightMenor") {
       dispatch(orderByHeight("menor"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
-      // setOrden(`Orden ${evento.target.value}`);
+      setOrden(`Orden ${evento.target.value}`);
     }
   };
   return (
