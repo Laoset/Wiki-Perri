@@ -23,7 +23,7 @@ const Home = () => {
   //PAGINADO , estado que me indica mi pagina actual y la variable que lo modifica
   const [currentPage, setCurrentPage] = useState(1);
   //Util para PAGINADO
-  const [orden, setOrden] = useState("");
+  // const [orden, setOrden] = useState("");
   //PAGINADO, estado que me indica la cantidad de PERROS por pagina que QUIERO y la variable que lo modifica
   const [dogsPerPage, setdogsPerPage] = useState(8);
   //PAGINADO, index del ultimo PERRO! esto porque va cambiando la posicion de acuerdo a la pag que este
@@ -36,8 +36,8 @@ const Home = () => {
   const paginado = (pagNumber) => {
     setCurrentPage(pagNumber);
   };
-  console.log(orden);
-
+  // console.log(orden);
+  // setOrden={setOrden}
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     setLoading(true);
@@ -66,7 +66,7 @@ const Home = () => {
             </div>
             <div className={styles.containerCartita}>
               <div className={styles.containerFiltros}>
-                <Filtros setCurrentPage={setCurrentPage} setOrden={setOrden} />
+                <Filtros setCurrentPage={setCurrentPage} />
               </div>
               <div className={styles.containerCard}>
                 {currentDogs?.map((p) => {
