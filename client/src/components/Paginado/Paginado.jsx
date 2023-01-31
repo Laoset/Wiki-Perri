@@ -11,20 +11,20 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   }
   console.log(currentPage);
   console.log(pages.length);
-  const handleArrowLeft = () => {
-    if (currentPage !== 1) {
-      currentPage = currentPage - 1;
-    }
-  };
-  const handleArrowRight = () => {
-    if (currentPage < pages.length) currentPage = currentPage + 1;
-  };
+  // const handleArrowLeft = () => {
+  //   if (currentPage !== 1) {
+  //     currentPage = currentPage - 1;
+  //   }
+  // };
+  // const handleArrowRight = () => {
+  //   if (currentPage < pages.length) currentPage = currentPage + 1;
+  // };
   return (
     <div className={styles.containerPadre}>
       <div className={styles.containerHijo}>
-        <button className={styles.bt} onClick={handleArrowLeft()}>
+        {/* <button type="button" className={styles.bt} onClick={handleArrowLeft()}>
           ⬅️
-        </button>
+        </button> */}
         {pages.length > 1
           ? pages.map((number) => (
               <div key={number}>
@@ -42,9 +42,9 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
               </div>
             ))
           : null}
-        <button className={styles.bt} onClick={handleArrowRight()}>
+        {/* <button className={styles.bt} onClick={handleArrowRight()}>
           ➡️
-        </button>
+        </button> */}
       </div>
     </div>
   );
