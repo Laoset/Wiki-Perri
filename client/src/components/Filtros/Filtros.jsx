@@ -53,7 +53,7 @@ export const Filtros = ({ setCurrentPage, setOrden, orden }) => {
     setCurrentPage(1);
     setOrden(`Ordenado ${evento.target.value}`);
   };
-
+  console.log(orden);
   //FUNCION QUE ABARCA MIS ORDENAMIENTOS
   const handleOpChange = (evento) => {
     const selectedOption = evento.target.value;
