@@ -104,12 +104,26 @@ router.get("/dogs/:idRaza", async (req, res) => {
     const todos = await getTodo();
     //Segundo, filtro y matcheo con la raza correspondiente
     const filtrado = todos.filter((r) => r.id == idRaza);
-    console.log(filtrado[0].temperament);
     filtrado.length
       ? res.status(200).send(filtrado)
       : res.status(404).send("No existe tal raza de perro con ese ID");
   } catch (error) {
-    res.status(400).send("Error server");
+    res.status(500).send("Error server");
+  }
+});
+///DELETE
+router.delete("/deleteDog/:id", async (req, res) => {
+  try {
+    //Hago uso del metodo destroy de sequelize para borrarlo de mi BDD
+    await Dog.destroy({
+      //Donde el {id} es lo que tomo de params y elimino de bdd
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).send("Eliminado correctamente");
+  } catch (error) {
+    res.status(400).send("Id incorrecto");
   }
 });
 ///// CREAR PERRO
