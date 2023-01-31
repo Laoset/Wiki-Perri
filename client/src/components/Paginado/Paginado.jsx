@@ -9,6 +9,7 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
     //para que comienze en 1
     pages.push(i);
   }
+  console.log(currentPage);
   return (
     <div className={styles.containerPadre}>
       <div className={styles.containerHijo}>

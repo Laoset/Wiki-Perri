@@ -21,7 +21,7 @@ const Home = () => {
   //Mi reemplazo de mapstateToProps
   const getDogs = useSelector((state) => state.dogs);
   //PAGINADO , estado que me indica mi pagina actual y la variable que lo modifica
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(currentPage);
   //Util para PAGINADO
   const [orden, setOrden] = useState("");
   //PAGINADO, estado que me indica la cantidad de PERROS por pagina que QUIERO y la variable que lo modifica
@@ -36,7 +36,7 @@ const Home = () => {
   const paginado = (pagNumber) => {
     setCurrentPage(pagNumber);
   };
-  // console.log(orden);
+  console.log(currentPage);
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     setLoading(true);
