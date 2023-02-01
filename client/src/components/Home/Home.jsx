@@ -67,7 +67,7 @@ const Home = () => {
             </div>
             <div className={styles.containerCartita}>
               <div className={styles.containerFiltros}>
-                <Filtros setCurrentPage={setCurrentPage} />
+                <Filtros setCurrentPage={setCurrentPage} setOrden={setOrden} />
               </div>
               <div className={styles.containerCard}>
                 {currentDogs?.map((p) => {
