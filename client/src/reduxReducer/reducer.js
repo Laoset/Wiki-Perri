@@ -29,7 +29,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case "SEARCH_DOG":
       return {
         ...state,
-        dogs: payload,
+        allDesorderDogs: payload,
       };
     case "SEARCH_ID":
       return {
