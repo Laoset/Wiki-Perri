@@ -1,13 +1,7 @@
 import React from "react";
 import styles from "./Paginado.module.css";
 
-const Paginado = ({
-  dogsPerPage,
-  getDogs,
-  paginado,
-  currentPage,
-  setCurrentPage,
-}) => {
+const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   //variable que guarda los numeros de las paginas que tengo
   const pages = [];
   //Bucle que realiza la cuenta y genera la cantidad de PAGINAS que tendre en mi PAGINADO
