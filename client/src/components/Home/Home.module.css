@@ -80,12 +80,7 @@
 }
 .containerSyC {
   display: flex;
-  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   align-items: center;
 }
-/* .containerSelect {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  text-align: center;
-} */

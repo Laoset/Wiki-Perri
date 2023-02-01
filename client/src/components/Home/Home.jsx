@@ -89,6 +89,7 @@ const Home = () => {
                 getDogs={getDogs.length}
                 paginado={paginado}
                 currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
               />
             </div>
           </div>

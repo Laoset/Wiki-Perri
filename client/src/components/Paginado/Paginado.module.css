@@ -1,10 +1,10 @@
-.containerPadre {
-  display: flex;
-}
 .containerHijo {
   display: flex;
   flex-direction: row;
   gap: 2px;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
 }
 .button {
   background-color: #ebedef;
@@ -37,4 +37,35 @@
 }
 .buttonCurrent:hover {
   transform: rotateX(38deg) translateY(7px);
+}
+/* FLECHAS FLECHAS */
+.bt {
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  height: 2rem;
+}
+.arrowLeft {
+  border: solid #ebedef;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  margin-top: 4px;
+  padding: 8px;
+  transform: rotate(135deg);
+}
+.arrowRight {
+  border: solid #ebedef;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  margin-top: 4px;
+  padding: 8px;
+  transform: rotate(-45deg);
+}
+.arrowLeft:hover,
+.arrowRight:hover {
+  border: solid #ff6961;
+  border-width: 0 5px 5px 0;
 }

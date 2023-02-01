@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./Paginado.module.css";
 
-const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
+const Paginado = ({
+  dogsPerPage,
+  getDogs,
+  paginado,
+  currentPage,
+  setCurrentPage,
+}) => {
   //variable que guarda los numeros de las paginas que tengo
   const pages = [];
   //Bucle que realiza la cuenta y genera la cantidad de PAGINAS que tendre en mi PAGINADO
@@ -11,41 +17,47 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   }
   console.log(currentPage);
   console.log(pages.length);
-  // const handleArrowLeft = () => {
-  //   if (currentPage !== 1) {
-  //     currentPage = currentPage - 1;
-  //   }
-  // };
-  // const handleArrowRight = () => {
-  //   if (currentPage < pages.length) currentPage = currentPage + 1;
-  // };
+  const handleArrowRight = () => {
+    if (currentPage !== pages.length) {
+      paginado(currentPage + 1);
+    }
+  };
+  const handleArrowLeft = () => {
+    if (currentPage !== 1) {
+      paginado(currentPage - 1);
+    }
+  };
   return (
-    <div className={styles.containerPadre}>
-      <div className={styles.containerHijo}>
-        {/* <button type="button" className={styles.bt} onClick={handleArrowLeft()}>
-          ⬅️
-        </button> */}
-        {pages.length > 1
-          ? pages.map((number) => (
-              <div key={number}>
-                <button
-                  type="button"
-                  className={
-                    currentPage === number
-                      ? styles.buttonCurrent
-                      : styles.button
-                  }
-                  onClick={() => paginado(number)}
-                >
-                  {number}
-                </button>
-              </div>
-            ))
-          : null}
-        {/* <button className={styles.bt} onClick={handleArrowRight()}>
-          ➡️
-        </button> */}
-      </div>
+    <div className={styles.containerHijo}>
+      <button
+        type="button"
+        className={styles.bt}
+        onClick={() => handleArrowLeft()}
+      >
+        <div className={styles.arrowLeft}></div>
+      </button>
+      {pages.length > 1
+        ? pages.map((number) => (
+            <div key={number}>
+              <button
+                type="button"
+                className={
+                  currentPage === number ? styles.buttonCurrent : styles.button
+                }
+                onClick={() => paginado(number)}
+              >
+                {number}
+              </button>
+            </div>
+          ))
+        : null}
+      <button
+        type="button"
+        className={styles.bt}
+        onClick={() => handleArrowRight()}
+      >
+        <div className={styles.arrowRight}></div>
+      </button>
     </div>
   );
 };

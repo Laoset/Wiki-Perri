@@ -7,7 +7,9 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
     <div className={styles.container}>
       <div className={styles.tarjetas}>
         <div className={styles.tarjetasDentro}>
-          <img src={image} alt="ggwp" className={styles.img} />
+          <div className={styles.imgContainer}>
+            <img src={image} alt="ggwp" className={styles.img} />
+          </div>
           <div className={styles.infoContainer}>
             <Link className={styles.link} to={"/detail/" + id}>
               <h3 className={styles.name}>{name}</h3>

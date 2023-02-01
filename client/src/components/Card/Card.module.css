@@ -14,21 +14,28 @@
 .tarjetas:hover {
   transform: translateY(-15px);
 }
-.infoContainer {
-  display: flex;
-  flex-direction: column;
-  height: 45%;
-}
 .tarjetasDentro {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  border: 1px solid #273746;
+  /* border: 1px solid #273746; */
   border-radius: 20px;
   width: 18rem;
   height: 23rem;
   background-color: #fdfefe;
+}
+.infoContainer {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  height: 45%;
+}
+.imgContainer {
+  /* border: 2px solid blue; */
+  display: flex;
+  flex-direction: column;
+  height: 55%;
 }
 .name {
   background-color: #ebedef;
@@ -47,7 +54,7 @@
 }
 .img {
   width: 100%;
-  height: 55%;
+  height: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
