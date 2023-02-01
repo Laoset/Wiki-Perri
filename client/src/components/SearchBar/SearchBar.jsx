@@ -5,7 +5,7 @@ import styles from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { searchDog } from "../../reduxActions/actions";
 
-const SearchBar = () => {
+const SearchBar = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
   //Estado que uso para guardar el NAME de lo que enviare como payload de mi action
   const [name, setName] = useState("");
@@ -16,6 +16,7 @@ const SearchBar = () => {
   const submitDoge = (evento) => {
     evento.preventDefault();
     dispatch(searchDog(name));
+    setCurrentPage(1);
   };
   console.log(name);
   return (

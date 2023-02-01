@@ -63,7 +63,7 @@ const Home = () => {
               </div>
             ) : null}
             <div className={styles.containerSearch}>
-              <SearchBar />
+              <SearchBar setCurrentPage={setCurrentPage} />
             </div>
             <div className={styles.containerCartita}>
               <div className={styles.containerFiltros}>
