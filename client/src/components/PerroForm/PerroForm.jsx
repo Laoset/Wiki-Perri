@@ -12,8 +12,9 @@ const PerroForm = () => {
   //Validador
   const validador = (info) => {
     //Variables regex
-    const nameRegex = /^[a-zA-Z ]{2,30}$/;
+    const nameRegex = /^[a-zA-Z ]{1,32}$/;
     const numberRegex = /^[0-9]*$/;
+    const urlImageRegex = /^http(|s):.*\.(jpg|png|jpeg|gif)$/;
     //variable donde guardo mis errores
     let errors = {};
     //NAME
@@ -30,7 +31,7 @@ const PerroForm = () => {
       !numberRegex.test(info.heightmax)
     ) {
       //Si la altura no coincide
-      errors.height = "Only number";
+      errors.height = "Only numbers";
     }
     if (info.heightmin <= 14) {
       errors.heightmin = "Minimum height 15cm";
@@ -42,7 +43,7 @@ const PerroForm = () => {
       errors.heightmax = "Cannot be less than the minimum";
     }
     if (!info.heightmin || !info.heightmax) {
-      errors.height = "Height required";
+      errors.height = "Height required and the max value is 90cm";
     }
     //PESO
     if (
@@ -50,7 +51,7 @@ const PerroForm = () => {
       !numberRegex.test(info.weightmax)
     ) {
       //Si el peso no coincide
-      errors.weight = "Only number";
+      errors.weight = "Only numbers";
     }
     if (info.weightmin <= 1) {
       errors.weightmin = "Minimum weight 2kg";
@@ -62,10 +63,14 @@ const PerroForm = () => {
       errors.weightmax = "Cannot be less than the minimum";
     }
     if (!info.weightmin || !info.weightmax) {
-      errors.weight = "Weight required";
+      errors.weight = "Weight required and the max value is 120kg";
     }
 
     //ESPERANZA DE VIDA
+    if (!numberRegex.test(info.life_span)) {
+      //Solo se permite numeros
+      errors.life_span = "Only numbers";
+    }
     if (info.life_span.length > 1) {
       if (info.life_span > 30) {
         errors.life_span = "Maximum 30 years";
@@ -76,11 +81,10 @@ const PerroForm = () => {
     }
     //IMAGEN
     if (info.image.length >= 1) {
-      if (info.image <= 0 || info.image >= 0) {
-        errors.image = "The image should not be numbers";
+      if (!urlImageRegex.test(info.image)) {
+        errors.image = "Should be valid url";
       }
     }
-
     return errors;
   };
   const dispatch = useDispatch();

@@ -11,6 +11,7 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
   }
   console.log(currentPage);
   console.log(pages.length);
+  console.log(pages);
   const handleArrowRight = () => {
     if (currentPage !== pages.length) {
       paginado(currentPage + 1);
