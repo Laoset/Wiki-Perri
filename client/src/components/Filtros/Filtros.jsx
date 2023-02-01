@@ -59,26 +59,22 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
       dispatch(orderByAlf("asc"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
-      //Modifica lo renderizado
       setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "alfDesc") {
       //Es mandarlo como la ultima opcion ya que no esta especificado el 'desc' en mi reducer
       dispatch(orderByAlf("desc"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
-      //Modifica lo renderizado
       setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "weightMayor") {
       dispatch(orderByWeight("mayor"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
-      //Modifica lo renderizado
       setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "weightMenor") {
       dispatch(orderByWeight("menor"));
       //Seteo la pagina actual a 1
       setCurrentPage(1);
-      //Modifica lo renderizado
       setOrden(`Orden ${evento.target.value}`);
     } else if (selectedOption === "heightMayor") {
       //No existe el valor mayor en la action por lo cual toma el valor del 'else'
