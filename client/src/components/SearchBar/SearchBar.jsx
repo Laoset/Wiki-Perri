@@ -16,6 +16,7 @@ const SearchBar = ({ setCurrentPage }) => {
   const submitDoge = (evento) => {
     evento.preventDefault();
     dispatch(searchDog(name));
+    //Sin esto bugea
     setCurrentPage(1);
   };
   console.log(name);
