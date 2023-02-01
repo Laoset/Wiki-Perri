@@ -17,6 +17,7 @@ const SearchBar = () => {
     evento.preventDefault();
     dispatch(searchDog(name));
   };
+  console.log(name);
   return (
     <div className={styles.containerPadre}>
       <div className={styles.searchContainer}>
