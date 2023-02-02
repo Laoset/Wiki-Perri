@@ -37,12 +37,18 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
   };
   //Filter de creacion
   const handleFilterCreated = (evento) => {
-    let payload = evento.target.value;
-    if (payload === "allDogs") {
-      dispatch(filterByAllDogs());
-    } else {
-      dispatch(filterByCreated(payload));
-    }
+    // const payload = evento.target.value;
+    // if (payload === "allDogs") {
+    //   dispatch(filterByAllDogs());
+    // }
+    // if (payload === "created") {
+    //   dispatch(filterByCreated(payload));
+    // }
+    // if (payload === "api") {
+    //   dispatch(filterByCreated(payload));
+    // }
+    evento.preventDefault();
+    dispatch(filterByCreated(evento.target.value));
   };
   //Filter de Temperamento
   const handleFilterTemperament = (evento) => {

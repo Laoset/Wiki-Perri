@@ -5,14 +5,7 @@ import Home from "./components/Home/Home";
 import PerroForm from "./components/PerroForm/PerroForm";
 import About from "./components/About/About";
 import Detail from "./components/Detail/Detail";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getRazas } from "./reduxActions/actions";
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getRazas());
-  }, [dispatch]);
   return (
     <BrowserRouter>
       <div className="App">

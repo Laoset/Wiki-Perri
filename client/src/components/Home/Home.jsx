@@ -35,10 +35,6 @@ const Home = () => {
   const paginado = (pagNumber) => {
     setCurrentPage(pagNumber);
   };
-  console.log(currentPage);
-  console.log(currentDogs);
-  console.log(lastDogIndex);
-  console.log(firstDogIndex);
   //Cuando mi componente se monta: ejecuta lo siguiente
   useEffect(() => {
     setLoading(true);

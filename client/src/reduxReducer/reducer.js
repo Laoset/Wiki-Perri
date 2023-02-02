@@ -1,10 +1,6 @@
 const initialState = {
-  //Estado basico y de refresh
   dogs: [],
-  //Estado para filtrar
-  allDogs: [],
-  //Estado para orden
-  allDesorderDogs: [],
+  dogsClean: [],
   //Estado para mis temperamentos
   temperaments: [],
   //Estado de detalle de perro
@@ -17,9 +13,7 @@ function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         dogs: payload,
-        allDogs: payload,
-        allDesorderDogs: payload,
-        detail: payload,
+        dogsClean: payload,
       };
     case "GET_TEMPERAMENTS":
       return {
@@ -40,13 +34,8 @@ function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
       };
-    case "FILTER_BY_ALL_DOGS":
-      return {
-        ...state,
-        dogs: state.allDogs,
-      };
     case "FILTER_BY_TEMPERAMENT":
-      const allTemps = state.allDogs;
+      const allTemps = [...state.dogsClean];
       const filterTemp =
         payload === "all"
           ? allTemps
@@ -58,44 +47,48 @@ function rootReducer(state = initialState, { type, payload }) {
         dogs: filterTemp,
       };
     case "FILTER_BY_CREATED":
+      let allDogs = [...state.dogsClean];
+      let aux;
       if (payload === "allDogs") {
         return {
           ...state,
-        };
-      } else {
-        const createdFilter =
-          payload === "created"
-            ? state.dogs.filter((el) => el.createInDb === true)
-            : state.dogs.filter((el) => !el.createInDb);
-        return {
-          ...state,
-          dogs: createdFilter,
+          dogs: allDogs,
         };
       }
+      if (payload === "created") {
+        aux = state.dogs.filter((el) => el.createInDb === true);
+      }
+      if (payload === "api") {
+        aux = state.dogs.filter((el) => !el.createInDb);
+      }
+      return {
+        ...state,
+        dogs: aux,
+      };
     case "ORDER_BY_ALF":
       let orderSort =
         payload === "asc"
           ? state.dogs.sort(function (a, b) {
-              if (a.name > b.name) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) {
                 return 1;
               }
-              if (b.name > a.name) {
+              if (b.name.toLowerCase() > a.name.toLowerCase()) {
                 return -1;
               }
               return 0;
             })
           : state.dogs.sort(function (a, b) {
-              if (a.name > b.name) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) {
                 return -1;
               }
-              if (b.name > a.name) {
+              if (b.name.toLowerCase() > a.name.toLowerCase()) {
                 return 1;
               }
               return 0;
             });
       return {
         ...state,
-        allDesorderDogs: orderSort,
+        dogs: orderSort,
       };
     case "ORDER_BY_WEIGHT":
       const orderWeight =
@@ -121,7 +114,7 @@ function rootReducer(state = initialState, { type, payload }) {
             });
       return {
         ...state,
-        allDesorderDogs: orderWeight,
+        dogs: orderWeight,
       };
     //Probando order por ALTURA
     case "ORDER_BY_HEIGHT":
@@ -147,7 +140,7 @@ function rootReducer(state = initialState, { type, payload }) {
             });
       return {
         ...state,
-        allDesorderDogs: orderHeight,
+        dogs: orderHeight,
       };
     default:
       return state;
