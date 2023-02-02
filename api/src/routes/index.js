@@ -195,4 +195,9 @@ router.get("/temperaments", async (req, res) => {
   res.status(200).send(todosTemperamentos);
   console.log(todosTemperamentos.length);
 });
+//WELCOME
+router.get("/", async (req, res) => {
+  res.status(200).send("WELCOME");
+});
+
 module.exports = router;

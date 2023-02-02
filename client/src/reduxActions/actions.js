@@ -99,9 +99,20 @@ export const postDog = (payload) => {
     });
   };
 };
-//TODO LOS PERRITOS (usado )
-export const filterByAllDogs = () => {
-  return {
-    type: "FILTER_BY_ALL_DOGS",
+export const deleteDog = (id) => {
+  return async function (dispatch) {
+    let dataPerriId = await Axios.delete(
+      `http://localhost:3001/deleteDog/${id}`
+    );
+    return dispatch({
+      type: "DELETE_DOG",
+      payload: dataPerriId.data,
+    });
   };
 };
+//TODO LOS PERRITOS (usado )
+// export const filterByAllDogs = () => {
+//   return {
+//     type: "FILTER_BY_ALL_DOGS",
+//   };
+// };

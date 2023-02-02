@@ -34,6 +34,10 @@ function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
       };
+    case "DELETE_DOG":
+      return {
+        ...state,
+      };
     case "FILTER_BY_TEMPERAMENT":
       const allTemps = [...state.dogsClean];
       const filterTemp =

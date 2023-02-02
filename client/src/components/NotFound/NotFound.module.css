@@ -1,0 +1,25 @@
+.padreContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.hijoContainer {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50rem;
+  height: 40rem;
+  background-repeat: no-repeat;
+  background-image: url("https://transcode-v2.app.engoo.com/image/fetch/f_auto,c_lfill,w_300,dpr_3/https://assets.app.engoo.com/images/QyDHB4YHkK2V6TA6QkDzSIMbQpg9IIUKO5tn8KuDcJ1.jpeg");
+}
+.containerText {
+  margin-top: 20px;
+  align-self: flex-start;
+}
+.h1 {
+  margin: 0;
+  font-size: 3rem;
+}

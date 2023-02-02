@@ -1,12 +1,30 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteDog, getRazas } from "../../reduxActions/actions";
 import styles from "./Card.module.css";
 
 const Card = ({ id, name, image, temperament, weight, createInDb }) => {
+  //Para borrar al perro
+  const dispatch = useDispatch();
+  const deleteRaza = (e) => {
+    e.preventDefault();
+    dispatch(deleteDog(id));
+    dispatch(getRazas());
+  };
   return (
     <div className={styles.container}>
       <div className={styles.tarjetas}>
         <div className={styles.tarjetasDentro}>
+          {createInDb ? (
+            <button
+              type="button"
+              className={styles.delete}
+              onClick={(e) => deleteRaza(e)}
+            >
+              X
+            </button>
+          ) : null}
           <div className={styles.imgContainer}>
             <img src={image} alt="ggwp" className={styles.img} />
           </div>

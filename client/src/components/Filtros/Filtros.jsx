@@ -10,7 +10,6 @@ import {
   orderByHeight,
   filterByTemperament,
   getTemperaments,
-  filterByAllDogs,
 } from "../../reduxActions/actions";
 
 export const Filtros = ({ setCurrentPage, setOrden }) => {
@@ -37,16 +36,6 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
   };
   //Filter de creacion
   const handleFilterCreated = (evento) => {
-    // const payload = evento.target.value;
-    // if (payload === "allDogs") {
-    //   dispatch(filterByAllDogs());
-    // }
-    // if (payload === "created") {
-    //   dispatch(filterByCreated(payload));
-    // }
-    // if (payload === "api") {
-    //   dispatch(filterByCreated(payload));
-    // }
     evento.preventDefault();
     dispatch(filterByCreated(evento.target.value));
   };
