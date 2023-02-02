@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import { searchIdDog } from "../../reduxActions/actions";
+import { getRazas, searchIdDog } from "../../reduxActions/actions";
 import styles from "./Detail.module.css";
 
 const Detail = () => {
@@ -18,6 +18,7 @@ const Detail = () => {
   console.log(doges);
   //Cuando se monta mi componente , cargo el Loader y hago la accion del searchIdDog
   useEffect(() => {
+    dispatch(getRazas());
     dispatch(searchIdDog(id));
     setLoading(true);
     setTimeout(() => {
