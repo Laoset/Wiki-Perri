@@ -65,8 +65,8 @@ function rootReducer(state = initialState, { type, payload }) {
       } else {
         const createdFilter =
           payload === "created"
-            ? state.allDogs.filter((el) => el.createInDb === true)
-            : state.allDogs.filter((el) => !el.createInDb);
+            ? state.dogs.filter((el) => el.createInDb === true)
+            : state.dogs.filter((el) => !el.createInDb);
         return {
           ...state,
           allDesorderDogs: createdFilter,
