@@ -38,31 +38,31 @@ const Detail = () => {
             <div className={styles.containerImg}>
               <img
                 className={styles.image}
-                src={doges[0].image}
-                alt={doges[0].name}
+                src={doges[0]?.image}
+                alt={doges[0]?.name}
               />
             </div>
             <div className={styles.containerText}>
-              <h1 className={styles.title}>{doges[0].name}</h1>
+              <h1 className={styles.title}>{doges[0]?.name}</h1>
               <h3 className={styles.h3tempera}>
-                Height<p className={styles.p}>{doges[0].height} cm</p>
+                Height<p className={styles.p}>{doges[0]?.height} cm</p>
               </h3>
               <h3 className={styles.h3tempera}>
                 Weight
-                <p className={styles.p}>{doges[0].weight} kg</p>
+                <p className={styles.p}>{doges[0]?.weight} kg</p>
               </h3>
               <h3 className={styles.h3tempera}>
                 Life span
-                <p className={styles.p}>{doges[0].life_span}</p>
+                <p className={styles.p}>{doges[0]?.life_span}</p>
               </h3>
 
               <h3 className={styles.h3tempera}>
                 Temperaments
                 <p className={styles.temperamentos}>
                   {
-                    doges[0].createInDb // Si es de la API
-                      ? doges[0].temperament.join(", ") // hago esto
-                      : doges[0].temperament //Si no hago esto
+                    doges[0]?.createInDb // Si es de la API
+                      ? doges[0]?.temperament.join(", ") // hago esto
+                      : doges[0]?.temperament //Si no hago esto
                   }
                 </p>
               </h3>
