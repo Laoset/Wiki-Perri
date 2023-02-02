@@ -69,7 +69,7 @@ function rootReducer(state = initialState, { type, payload }) {
             : state.dogs.filter((el) => !el.createInDb);
         return {
           ...state,
-          allDesorderDogs: createdFilter,
+          dogs: createdFilter,
         };
       }
     case "ORDER_BY_ALF":
