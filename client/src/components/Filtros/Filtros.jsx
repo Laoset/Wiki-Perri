@@ -50,6 +50,9 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
   //FUNCION QUE ABARCA MIS ORDENAMIENTOS
   const handleOpChange = (evento) => {
     const selectedOption = evento.target.value;
+    if (selectedOption === "default") {
+      dispatch(getRazas());
+    }
     if (selectedOption === "alfAsc") {
       dispatch(orderByAlf("asc"));
       //Seteo la pagina actual a 1
@@ -109,7 +112,7 @@ export const Filtros = ({ setCurrentPage, setOrden }) => {
           <option value="created">Creadas</option>
         </select>
         <select className={styles.selectores} onChange={handleOpChange}>
-          <option value="">Order By</option>
+          <option value="default">Order By</option>
           <option value="alfAsc">A-Z</option>
           <option value="alfDesc">Z-A</option>
           <option value="weightMayor">+Weight</option>

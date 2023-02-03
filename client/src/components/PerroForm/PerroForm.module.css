@@ -54,7 +54,7 @@
   flex-direction: row;
   background-color: #ebedef;
   border-radius: 20px;
-  height: 47rem;
+  height: 60rem;
   width: 45rem;
   max-height: 60rem;
 }
@@ -139,6 +139,7 @@
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  margin-bottom: 7rem;
 }
 .btTemp {
   cursor: pointer;
@@ -168,8 +169,8 @@
   cursor: pointer;
   transition: transform 0.2s;
   background-color: #fdf2e9;
-  margin-top: 10rem;
-  margin-bottom: -2rem;
+  /* margin-bottom: -1.5rem;
+  margin-top: 0.8rem; */
 }
 .submit:hover {
   transform: rotateX(38deg) translateY(7px);

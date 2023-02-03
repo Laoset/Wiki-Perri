@@ -4,7 +4,7 @@
 }
 .tarjetas {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 15px;
@@ -80,10 +80,8 @@
   cursor: pointer;
   outline: inherit;
   width: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #ebedef;
   color: #273746;
   border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }

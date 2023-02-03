@@ -15,7 +15,7 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
   return (
     <div className={styles.container}>
       <div className={styles.tarjetas}>
-        {createInDb ? (
+        {/* {createInDb ? (
           <button
             type="button"
             className={styles.delete}
@@ -23,7 +23,7 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
           >
             X
           </button>
-        ) : null}
+        ) : null} */}
         <div className={styles.tarjetasDentro}>
           <div className={styles.imgContainer}>
             <img src={image} alt="noImg" className={styles.img} />
@@ -36,6 +36,15 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
             <h2 className={styles.temperament}>
               {createInDb ? temperament.join(", ") : temperament}
             </h2>
+            {createInDb ? (
+              <button
+                type="button"
+                className={styles.delete}
+                onClick={(e) => deleteRaza(e)}
+              >
+                X
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
