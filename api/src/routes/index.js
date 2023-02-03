@@ -78,7 +78,7 @@ const getTodo = async () => {
   const dbInfo = await getDbData();
   return [...dbInfo, ...revision];
 };
-//Comienzo con mis request, funciona tanto como para traer todos como para QUERY params
+//Comienzo con mis request, funciona tanto como para traer todos como para QUERY params, luego utilizo en el SEARCHBAR
 router.get("/dogs", async (req, res) => {
   const name = req.query.name;
   let total = await getTodo();
@@ -92,8 +92,6 @@ router.get("/dogs", async (req, res) => {
     query.length
       ? res.status(200).send(query) // Si tiene LENGTH
       : res.status(404).send("Error, no existe tal perro con ese nombre"); // Si no tiene LENGTH
-    //Si no existe ese query mando todos los dogs
-    console.log(`Cantidad de names encontrados por query ${query.length}`);
   } else {
     res.status(200).send(total);
   }
@@ -158,11 +156,6 @@ router.post("/dogs", async (req, res) => {
     const newTemperament = await Temperament.findAll({
       where: { name: temperaments },
     });
-    // //si no hay temperament que encuentre CREA con el dato que se trae por BODY
-    // if (!newTemperament) {
-    //   newTemperament = await Temperament.create({ name: temperaments });
-    //   res.status(201).send("TEMP CREADA");
-    // }
     //guardo lo que se crea en mi MODELO de perro en una constante
     const creadoDog = await Dog.create({
       name,
@@ -178,7 +171,7 @@ router.post("/dogs", async (req, res) => {
     res.status(400).send("No se pudo crear el perro, verifique datos");
   }
 });
-/////
+//Traer temperamentos
 router.get("/temperaments", async (req, res) => {
   //Me traigo TODA la info de la API
   let infoApi = await axios.get(
@@ -186,7 +179,9 @@ router.get("/temperaments", async (req, res) => {
   );
   //Mapeo la INFO que pedi anteriormente en busca de la PROPIEDAD TEMPERAMENT y la guardo
   let mapeadaApi = infoApi.data.map((t) => t.temperament); //A esa informacion le aplico metodos para poder manipularlo mejor
+  console.log(mapeadaApi);
   let tempera = mapeadaApi.join(",").split(",");
+  console.log(tempera);
   tempera.forEach(async (t) => {
     await Temperament.findOrCreate({
       where: { name: t },
@@ -200,5 +195,4 @@ router.get("/temperaments", async (req, res) => {
 router.get("/", async (req, res) => {
   res.status(200).send("WELCOME");
 });
-
 module.exports = router;

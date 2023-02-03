@@ -15,16 +15,16 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
   return (
     <div className={styles.container}>
       <div className={styles.tarjetas}>
+        {createInDb ? (
+          <button
+            type="button"
+            className={styles.delete}
+            onClick={(e) => deleteRaza(e)}
+          >
+            X
+          </button>
+        ) : null}
         <div className={styles.tarjetasDentro}>
-          {createInDb ? (
-            <button
-              type="button"
-              className={styles.delete}
-              onClick={(e) => deleteRaza(e)}
-            >
-              X
-            </button>
-          ) : null}
           <div className={styles.imgContainer}>
             <img src={image} alt="noImg" className={styles.img} />
           </div>
