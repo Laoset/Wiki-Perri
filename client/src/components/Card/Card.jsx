@@ -26,7 +26,7 @@ const Card = ({ id, name, image, temperament, weight, createInDb }) => {
             </button>
           ) : null}
           <div className={styles.imgContainer}>
-            <img src={image} alt="ggwp" className={styles.img} />
+            <img src={image} alt="noImg" className={styles.img} />
           </div>
           <div className={styles.infoContainer}>
             <Link className={styles.link} to={"/detail/" + id}>
