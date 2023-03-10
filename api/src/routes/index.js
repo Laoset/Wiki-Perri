@@ -9,8 +9,6 @@ const { where } = require("sequelize");
 const router = Router();
 //Mi KEY provista por la API al registarme
 const { DOGS_API_KEY } = process.env;
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 
 //Funcion que al EJECUTARSE me trae los PERROS con su correspondientes PROPIEDADES
 const getApiData = async () => {
@@ -82,117 +80,133 @@ const getTodo = async () => {
 router.get("/dogs", async (req, res) => {
   const name = req.query.name;
   let total = await getTodo();
-  //PREGUNTO si existe name , osea si se hace de uso de query!
   if (name) {
-    //Aca me guardo el que matchee del total de perros pero con lowercase para no problems
     let query = total.filter((p) =>
       p.name.toLowerCase().includes(name.toLowerCase())
     );
-    //A la variable matcheada aplico metodo LENGTH
     query.length
-      ? res.status(200).send(query) // Si tiene LENGTH
-      : res.status(404).send("Error, no existe tal perro con ese nombre"); // Si no tiene LENGTH
+      ? res.status(200).send(query)
+      : res.status(404).send("Error, no existe tal perro con ese nombre");
   } else {
     res.status(200).send(total);
   }
 });
-router.get("/dogs/:idRaza", async (req, res) => {
-  try {
-    const { idRaza } = req.params;
-    //Primero me traigo todos los perros
-    const todos = await getTodo();
-    //Segundo, filtro y matcheo con la raza correspondiente
-    const filtrado = todos.filter((r) => r.id == idRaza);
-    filtrado.length
-      ? res.status(200).send(filtrado)
-      : res.status(404).send("No existe tal raza de perro con ese ID");
-  } catch (error) {
-    res.status(500).send("Error server");
+
+router.get(
+  "/dogs/:idRaza",
+
+  async (req, res) => {
+    try {
+      const { idRaza } = req.params;
+      //Primero me traigo todos los perros
+      const todos = await getTodo();
+      //Segundo, filtro y matcheo con la raza correspondiente
+      const filtrado = todos.filter((r) => r.id == idRaza);
+      filtrado.length
+        ? res.status(200).send(filtrado)
+        : res.status(404).send("No existe tal raza de perro con ese ID");
+    } catch (error) {
+      res.status(500).send("Error server");
+    }
   }
-});
+);
 ///DELETE DOG
-router.delete("/deleteDog/:id", async (req, res) => {
-  try {
-    //Hago uso del metodo DESTROY de sequelize para borrarlo de mi BDD
-    await Dog.destroy({
-      //Donde el {id} es lo que tomo por params y elimino de bdd
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.status(200).send("Eliminado correctamente");
-  } catch (error) {
-    res.status(400).send("Id incorrecto");
-  }
-});
-//UPDATE DOG
-router.put("/dogs/:id", async (req, res) => {
-  try {
-    //Hago uso del metodo UPDATE de sequelize para actualizarlo
-    await Dog.update(
-      {
-        name: req.body.name,
-        weight: req.body.weight,
-        height: req.body.height,
-      },
-      {
-        //Donde el {id} es lo que tomo por params y modifico las propiedades anteriores
+router.delete(
+  "/deleteDog/:id",
+
+  async (req, res) => {
+    try {
+      //Hago uso del metodo DESTROY de sequelize para borrarlo de mi BDD
+      await Dog.destroy({
+        //Donde el {id} es lo que tomo por params y elimino de bdd
         where: {
           id: req.params.id,
         },
-      }
-    );
-    res.status(200).send("Modificado correctamente");
-  } catch (error) {
-    res.status(400).send("Id incorrecto");
+      });
+      res.status(200).send("Eliminado correctamente");
+    } catch (error) {
+      res.status(400).send("Id incorrecto");
+    }
   }
-});
+);
+//UPDATE DOG
+router.put(
+  "/dogs/:id",
+
+  async (req, res) => {
+    try {
+      //Hago uso del metodo UPDATE de sequelize para actualizarlo
+      await Dog.update(
+        {
+          name: req.body.name,
+          weight: req.body.weight,
+          height: req.body.height,
+        },
+        {
+          //Donde el {id} es lo que tomo por params y modifico las propiedades anteriores
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+      res.status(200).send("Modificado correctamente");
+    } catch (error) {
+      res.status(400).send("Id incorrecto");
+    }
+  }
+);
 ///// POST DOG
-router.post("/dogs", async (req, res) => {
-  try {
-    //lo que necesito por body (formulario frontEnd)
-    const { name, weight, life_span, image, height, temperaments } = req.body;
-    //todo lo que tenga el modelo TEMPERAMENT donde el name sea temperaments(body)
-    const newTemperament = await Temperament.findAll({
-      where: { name: temperaments },
-    });
-    //guardo lo que se crea en mi MODELO de perro en una constante
-    const creadoDog = await Dog.create({
-      name,
-      weight,
-      life_span,
-      image,
-      height,
-    });
-    //a la informacion anterior le hago el metodo ADD que lo asocia con el modelo TEMP y le pasa la variable que tiene la info del TEMPERAMENTO, LO UNE
-    await creadoDog.addTemperament(newTemperament);
-    res.status(200).send(creadoDog);
-  } catch (error) {
-    res.status(400).send("No se pudo crear el perro, verifique datos");
+router.post(
+  "/dogs",
+
+  async (req, res) => {
+    try {
+      //lo que necesito por body (formulario frontEnd)
+      const { name, weight, life_span, image, height, temperaments } = req.body;
+      //todo lo que tenga el modelo TEMPERAMENT donde el name sea temperaments(body)
+      const newTemperament = await Temperament.findAll({
+        where: { name: temperaments },
+      });
+      //guardo lo que se crea en mi MODELO de perro en una constante
+      const creadoDog = await Dog.create({
+        name,
+        weight,
+        life_span,
+        image,
+        height,
+      });
+      //a la informacion anterior le hago el metodo ADD que lo asocia con el modelo TEMP y le pasa la variable que tiene la info del TEMPERAMENTO, LO UNE
+      await creadoDog.addTemperament(newTemperament);
+      res.status(200).send(creadoDog);
+    } catch (error) {
+      res.status(400).send("No se pudo crear el perro, verifique datos");
+    }
   }
-});
+);
 //Traer temperamentos
-router.get("/temperaments", async (req, res) => {
-  //Me traigo TODA la info de la API
-  let infoApi = await axios.get(
-    `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
-  );
-  //Mapeo la INFO que pedi anteriormente en busca de la PROPIEDAD TEMPERAMENT y la guardo
-  let mapeadaApi = infoApi.data.map((t) => t.temperament); //A esa informacion le aplico metodos para poder manipularlo mejor
-  console.log(mapeadaApi);
-  let tempera = mapeadaApi.join(",").split(",");
-  console.log(tempera);
-  tempera.forEach(async (t) => {
-    await Temperament.findOrCreate({
-      where: { name: t },
+router.get(
+  "/temperaments",
+
+  async (req, res) => {
+    //Me traigo TODA la info de la API
+    let infoApi = await axios.get(
+      `https://api.thedogapi.com/v1/breeds?api_key${DOGS_API_KEY}`
+    );
+    //Mapeo la INFO que pedi anteriormente en busca de la PROPIEDAD TEMPERAMENT y la guardo
+    let mapeadaApi = infoApi.data.map((t) => t.temperament); //A esa informacion le aplico metodos para poder manipularlo mejor
+    let tempera = mapeadaApi.join(",").split(",");
+    tempera.forEach(async (t) => {
+      await Temperament.findOrCreate({
+        where: { name: t },
+      });
     });
-  });
-  let todosTemperamentos = await Temperament.findAll();
-  res.status(200).send(todosTemperamentos);
-  console.log(todosTemperamentos.length);
-});
+    let todosTemperamentos = await Temperament.findAll();
+    res.status(200).send(todosTemperamentos);
+  }
+);
 //WELCOME
 router.get("/", async (req, res) => {
   res.status(200).send("WELCOME");
 });
+
 module.exports = router;

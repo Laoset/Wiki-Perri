@@ -5,6 +5,7 @@ const initialState = {
   temperaments: [],
   //Estado de detalle de perro
   detail: [],
+  filter: "allDogs",
 };
 
 function rootReducer(state = initialState, { type, payload }) {
@@ -57,18 +58,25 @@ function rootReducer(state = initialState, { type, payload }) {
         return {
           ...state,
           dogs: allDogs,
+          filter: "allDogs",
         };
       }
       if (payload === "created") {
-        aux = state.dogs.filter((el) => el.createInDb === true);
+        aux = allDogs.filter((el) => el.createInDb === true);
+        return {
+          ...state,
+          dogs: aux,
+          filter: "created",
+        };
+      } else if (payload === "api") {
+        aux = allDogs.filter((el) => !el.createInDb);
+        return {
+          ...state,
+          dogs: aux,
+          filter: "api",
+        };
       }
-      if (payload === "api") {
-        aux = state.dogs.filter((el) => !el.createInDb);
-      }
-      return {
-        ...state,
-        dogs: aux,
-      };
+      return state;
     case "ORDER_BY_ALF":
       let orderSort =
         payload === "asc"

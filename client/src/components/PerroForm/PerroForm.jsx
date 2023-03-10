@@ -129,11 +129,15 @@ const PerroForm = () => {
     );
   };
   //PARA MIS TEMPERAMENTOS
-  const handleTemp = (evento) => {
-    setInfo({
-      ...info,
-      temperaments: [...info.temperaments, evento.target.value],
-    });
+  const handleTemp = (e) => {
+    const selectedTemp = e.target.value;
+    if (!info.temperaments.includes(selectedTemp)) {
+      setInfo({
+        ...info,
+        temperaments: [...info.temperaments, selectedTemp],
+      });
+    }
+    e.target.value = "Temperaments";
   };
   //SUBMIT DE FORMULARIO CON DATOS COMPLETADOS
   const handleSubmit = (evento) => {
@@ -157,7 +161,7 @@ const PerroForm = () => {
       alert("You have missing or incorrect information");
     }
   };
-
+  console.log(info);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
