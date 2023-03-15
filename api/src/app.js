@@ -11,12 +11,10 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
+app.use(morgan("dev"));
 app.use((req, res, next) => {
-  //MODIFICO para que pueda hacer peticiones a la URL escrita
-
   res.header(
     "Access-Control-Allow-Origin",
-    // "http://localhost:3000"
     "https://deploy-perritos.vercel.app"
   ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
@@ -27,11 +25,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   // res.header("Access-Control-Allow-Headers", "Authorization");
-//   next();
-// });
 app.use("/", routes);
 
 // Error catching endware.
