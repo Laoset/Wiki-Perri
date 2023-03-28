@@ -3,7 +3,7 @@ import Axios from "axios";
 export const getRazas = () => {
   return async function (dispatch) {
     let infoAfuera = await Axios.get(
-      "https://dogs-h1p9.onrender.com//dogs"
+      "https://dogs-h1p9.onrender.com/dogs"
       // "http://localhost:3001/dogs"
     );
     return dispatch({
@@ -16,7 +16,7 @@ export const getRazas = () => {
 export const getTemperaments = () => {
   return async function (dispatch) {
     let infoTemperaments = await Axios.get(
-      "https://dogs-h1p9.onrender.com//temperaments"
+      "https://dogs-h1p9.onrender.com/temperaments"
       // "http://localhost:3001/temperaments"
     );
     return dispatch({
