@@ -1,16 +1,34 @@
-.container {
-  display: flex;
-  height: 26rem;
+@media screen and (min-width: 360px) {
+  .container {
+    display: flex;
+    height: 26rem;
+  }
+  .tarjetas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    height: 25rem;
+    transition: 0.5s;
+  }
 }
-.tarjetas {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 15px;
-  height: 25rem;
-  transition: 0.5s;
+@media screen and (min-width: 1024px) {
+  .container {
+    display: flex;
+    height: 26rem;
+  }
+  .tarjetas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    height: 25rem;
+    transition: 0.5s;
+  }
 }
+
 .tarjetas:hover {
   transform: translateY(-15px);
 }

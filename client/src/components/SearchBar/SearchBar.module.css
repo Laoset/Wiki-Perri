@@ -1,36 +1,110 @@
-.containerPadre {
-  display: flex;
-  flex-direction: row;
+@media screen and (min-width: 360px) {
+  .containerPadre {
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .searchContainer {
+    height: 1.8rem;
+    width: 15rem;
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+  }
+  .input {
+    background: #ebedef;
+    height: 1.2rem;
+    width: 14rem;
+    padding: 5px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    color: #273746;
+    outline: none;
+    transition: 0.5s;
+  }
+  .bt {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    cursor: pointer;
+    margin-left: -30px;
+    width: 2rem;
+  }
 }
-.searchContainer {
-  height: 1.8rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0;
+@media screen and (min-width: 660px) {
+  .containerPadre {
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .searchContainer {
+    height: 2rem;
+    width: 15rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .input {
+    background: #ebedef;
+    height: 1.5rem;
+    width: 14rem;
+    padding: 5px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    color: #273746;
+    outline: none;
+    transition: 0.5s;
+  }
+  .bt {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    cursor: pointer;
+    margin-left: -30px;
+    width: 2rem;
+  }
 }
-.bt {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  cursor: pointer;
-  margin-left: -30px;
-  width: 2rem;
-}
-.input {
-  background: #ebedef;
-  height: 1rem;
-  width: 6rem;
-  padding: 5px;
-  border: 2px solid gray;
-  border-radius: 20px;
-  color: #273746;
-  outline: none;
-  transition: 0.5s;
-}
-.input:hover {
-  width: 10rem;
-  border-radius: 10px;
+@media screen and (min-width: 1024px) {
+  .containerPadre {
+    display: flex;
+    flex-direction: row;
+  }
+  .searchContainer {
+    height: 1.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+  .bt {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    cursor: pointer;
+    margin-left: -30px;
+    width: 2rem;
+  }
+  .input {
+    background: #ebedef;
+    height: 1rem;
+    width: 6rem;
+    padding: 5px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    color: #273746;
+    outline: none;
+    transition: 0.5s;
+  }
+  .input:hover {
+    width: 10rem;
+    border-radius: 10px;
+  }
 }

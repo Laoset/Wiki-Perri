@@ -31,21 +31,25 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
       >
         <div className={styles.arrowLeft}></div>
       </button>
-      {pages.length > 1
-        ? pages.map((number) => (
-            <div key={number}>
-              <button
-                type="button"
-                className={
-                  currentPage === number ? styles.buttonCurrent : styles.button
-                }
-                onClick={() => paginado(number)}
-              >
-                {number}
-              </button>
-            </div>
-          ))
-        : null}
+      <div className={styles.allPages}>
+        {pages.length > 1
+          ? pages.map((number) => (
+              <div key={number} className={styles.hijoAllPages}>
+                <button
+                  type="button"
+                  className={
+                    currentPage === number
+                      ? styles.buttonCurrent
+                      : styles.button
+                  }
+                  onClick={() => paginado(number)}
+                >
+                  {number}
+                </button>
+              </div>
+            ))
+          : null}
+      </div>
       <button
         type="button"
         className={styles.bt}

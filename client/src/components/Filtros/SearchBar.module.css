@@ -1,26 +1,79 @@
-.containerPadre {
-  border: 1px solid #273746;
-  background-color: #ebedef;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 50%;
-  border-radius: 10px;
-  margin-top: 20px;
+@media screen and (min-width: 360px) {
+  .containerPadre {
+    border: 1px solid #273746;
+    background-color: #ebedef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    height: 30%;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .sContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 0.2rem;
+  }
+  .containerSelect {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
 }
-.containerSelect {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 5rem;
-  margin-top: 1rem;
+@media screen and (min-width: 660px) {
+  .containerPadre {
+    border: 1px solid #273746;
+    background-color: #ebedef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 30%;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .sContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  .containerSelect {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
 }
-.sContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  margin-bottom: 1rem;
+@media screen and (min-width: 1024px) {
+  .containerPadre {
+    border: 1px solid #273746;
+    background-color: #ebedef;
+    display: flex;
+    /* justify-content: start; */
+    width: 100%;
+    height: 30%;
+    border-radius: 10px;
+    /* margin-top: 20px; */
+  }
+  .sContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 1rem;
+  }
+  .containerSelect {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+  }
 }
+
 .selectores {
   display: flex;
   font-size: 15px;

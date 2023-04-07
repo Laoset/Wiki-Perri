@@ -44,18 +44,19 @@ const Detail = () => {
             </div>
             <div className={styles.containerText}>
               <h1 className={styles.title}>{doges[0]?.name}</h1>
-              <h3 className={styles.h3tempera}>
-                Height<p className={styles.p}>{doges[0]?.height} cm</p>
-              </h3>
-              <h3 className={styles.h3tempera}>
-                Weight
-                <p className={styles.p}>{doges[0]?.weight} kg</p>
-              </h3>
-              <h3 className={styles.h3tempera}>
-                Life span
-                <p className={styles.p}>{doges[0]?.life_span}</p>
-              </h3>
-
+              <div className={styles.dentroText}>
+                <h3 className={styles.h3tempera}>
+                  Height<p className={styles.p}>{doges[0]?.height} cm</p>
+                </h3>
+                <h3 className={styles.h3tempera}>
+                  Weight
+                  <p className={styles.p}>{doges[0]?.weight} kg</p>
+                </h3>
+                <h3 className={styles.h3tempera}>
+                  Life span
+                  <p className={styles.p}>{doges[0]?.life_span}</p>
+                </h3>
+              </div>
               <h3 className={styles.h3tempera}>
                 Temperaments
                 <p className={styles.temperamentos}>
