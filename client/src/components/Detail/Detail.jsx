@@ -12,10 +12,8 @@ const Detail = () => {
   const dispatch = useDispatch();
   //Id que capturo del URL
   const { id } = useParams();
-  console.log(id);
   //Me traigo el estado DETAIL, que contiene info de mi DOG ya ubicado
   const doges = useSelector((state) => state.detail);
-  console.log(doges);
   //Cuando se monta mi componente , cargo el Loader y hago la accion del searchIdDog
   useEffect(() => {
     dispatch(getRazas());

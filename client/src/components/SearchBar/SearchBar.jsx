@@ -19,7 +19,6 @@ const SearchBar = ({ setCurrentPage }) => {
     //Sin esto bugea
     setCurrentPage(1);
   };
-  console.log(name);
   return (
     <div className={styles.containerPadre}>
       <div className={styles.searchContainer}>

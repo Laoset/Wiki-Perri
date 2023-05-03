@@ -156,12 +156,10 @@ const PerroForm = () => {
       history.push("/home");
       //Luego de llegar a home hago un refresh mediante el getRazas, asi me muestra el perro nuevo
       dispatch(getRazas());
-      console.log(info);
     } else {
       alert("You have missing or incorrect information");
     }
   };
-  console.log(info);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {

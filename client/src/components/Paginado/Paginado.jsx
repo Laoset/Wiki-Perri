@@ -9,9 +9,6 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
     //para que comienze en 1
     pages.push(i);
   }
-  console.log(currentPage);
-  console.log(pages.length);
-  console.log(pages);
   const handleArrowRight = () => {
     if (currentPage !== pages.length) {
       paginado(currentPage + 1);
@@ -32,23 +29,23 @@ const Paginado = ({ dogsPerPage, getDogs, paginado, currentPage }) => {
         <div className={styles.arrowLeft}></div>
       </button>
       <div className={styles.allPages}>
-        {pages.length > 1
-          ? pages.map((number) => (
-              <div key={number} className={styles.hijoAllPages}>
-                <button
-                  type="button"
-                  className={
-                    currentPage === number
-                      ? styles.buttonCurrent
-                      : styles.button
-                  }
-                  onClick={() => paginado(number)}
-                >
-                  {number}
-                </button>
-              </div>
-            ))
-          : null}
+        {pages.length > 1 ? (
+          pages.map((number) => (
+            <div key={number} className={styles.hijoAllPages}>
+              <button
+                type="button"
+                className={
+                  currentPage === number ? styles.buttonCurrent : styles.button
+                }
+                onClick={() => paginado(number)}
+              >
+                {number}
+              </button>
+            </div>
+          ))
+        ) : (
+          <h1>please wait, sometimes takes time get all the dogs</h1>
+        )}
       </div>
       <button
         type="button"
