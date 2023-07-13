@@ -3,7 +3,7 @@ import Axios from "axios";
 export const getRazas = () => {
   return async function (dispatch) {
     let infoAfuera = await Axios.get(
-      "https://deployperritos-production.up.railway.app/dogs"
+      "https://dogs-vercel-backend.vercel.app/dogs"
       // "http://localhost:3001/dogs"
     );
     return dispatch({
@@ -16,7 +16,7 @@ export const getRazas = () => {
 export const getTemperaments = () => {
   return async function (dispatch) {
     let infoTemperaments = await Axios.get(
-      "https://deployperritos-production.up.railway.app/temperaments"
+      "https://dogs-vercel-backend.vercel.app/temperaments"
       // "http://localhost:3001/temperaments"
     );
     return dispatch({
@@ -29,7 +29,7 @@ export const getTemperaments = () => {
 export const searchDog = (payload) => {
   return async function (dispatch) {
     let dataPerri = await Axios.get(
-      `https://deployperritos-production.up.railway.app/dogs?name=${payload}`
+      `https://dogs-vercel-backend.vercel.app/dogs?name=${payload}`
       // `http://localhost:3001/dogs?name=${payload}`
     );
     return dispatch({
@@ -42,7 +42,7 @@ export const searchDog = (payload) => {
 export const searchIdDog = (id) => {
   return async function (dispatch) {
     let dataPerriId = await Axios.get(
-      `https://deployperritos-production.up.railway.app/dogs/${id}`
+      `https://dogs-vercel-backend.vercel.app/dogs/${id}`
       // `http://localhost:3001/dogs/${id}`
     );
     return dispatch({
@@ -88,7 +88,7 @@ export const orderByHeight = (payload) => {
 export const postDog = (payload) => {
   return async function (dispatch) {
     const postPerri = await Axios.post(
-      "https://deployperritos-production.up.railway.app/dogs",
+      "https://dogs-vercel-backend.vercel.app/dogs",
       // "http://localhost:3001/dogs",
 
       payload
@@ -102,7 +102,7 @@ export const postDog = (payload) => {
 export const deleteDog = (id) => {
   return async function (dispatch) {
     let dataPerriId = await Axios.delete(
-      `https://deployperritos-production.up.railway.app/deleteDog/${id}`
+      `https://dogs-vercel-backend.vercel.app/dogs/${id}`
       // `http://localhost:3001/deleteDog/${id}`
     );
     return dispatch({
