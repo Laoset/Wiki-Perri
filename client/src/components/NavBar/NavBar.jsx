@@ -16,7 +16,7 @@ const NavBar = () => {
           <button className={styles.bt}>Create Dog</button>
         </Link>
         <Link to="/about">
-          <button className={styles.bt}>About me</button>
+          <button className={styles.bt}>About this website</button>
         </Link>
       </div>
     </div>

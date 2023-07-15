@@ -13,12 +13,10 @@ const About = () => {
           </h1>
         </div>
         <h3 className={styles.h3Mi}>
-          I am currently attending 'Henry FullStack Bootcamp'. This website is
-          part of it and is called{" "}
-          <span className={styles.spansito}>Individual Project</span>, the idea
-          is to create the site from 0, working with Database, Back End and
-          Front End. It must meet the following requirements, based on the
-          proposed theme:
+          This page is part of the
+          <span className={styles.spansito}>'soyHenry'</span> bootcamp course,
+          which consists of making a complete web page, database, backend and
+          frontend. It must meet the following requirements:
           <div className={styles.req}>
             <li className={styles.li}>Search for dogs</li>
             <li className={styles.li}>Filter / Sort them</li>

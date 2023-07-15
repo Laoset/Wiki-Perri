@@ -1,7 +1,4 @@
 const { Router } = require("express");
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-/////Axios para metodos HTTP
 const axios = require("axios");
 /////Me traigo los modelos
 const { Dog, Temperament } = require("../db.js");
